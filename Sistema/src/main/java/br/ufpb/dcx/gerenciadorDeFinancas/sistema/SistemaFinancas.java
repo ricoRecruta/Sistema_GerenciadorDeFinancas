@@ -34,19 +34,26 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas{
     }
 
     @Override
-    public void cadastrarCompra(String descricao, double valor) {
+    public void cadastrarCompra(Compra compra) {
         //TODO;
     }
 
     @Override
     public void editarSalario(double novoSalario) {
-        //TODO;
+        this.conta.setSalario(novoSalario);
     }
 
-    @Override
+    /*@Override
     public double exibirTotalGasto() {
-        return 0;
-        //TODO;
+        double valorTotal = 0;
+        for (Compra k: this.compras.values()){
+            valorTotal = k.getValorCompra() + valorTotal;
+        }
+        return valorTotal;
+    }*/
+
+    public double exibirTotalGasto(){
+        return this.compras.values().stream().mapToDouble(Compra::getValorCompra).sum();
     }
 
     @Override
