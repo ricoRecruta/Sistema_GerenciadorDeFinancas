@@ -1,6 +1,7 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
-public class Compra {
+import br.ufpb.dcx.gerenciadorDeFinancas.sistema.categoriaCompra;
+public class Compra{
     private Chave idCompra;
     private  categoriaCompra categoriaCompra;
     private double valorCompra;
@@ -13,9 +14,9 @@ public class Compra {
         this.descricao = descricao;
     }
 
-    public Compra(){
+    /*public Compra(){
         this(categoriaCompra.OUTROS, 0.0, "");
-    }
+    }*/
 
     public Chave getIdCompra() {
         return idCompra;
@@ -25,11 +26,11 @@ public class Compra {
         this.idCompra = idCompra;
     }
 
-    public br.ufpb.dcx.gerenciadorDeFinancas.sistema.categoriaCompra getCategoriaCompra() {
+    public categoriaCompra getCategoriaCompra() {
         return categoriaCompra;
     }
 
-    public void setCategoriaCompra(br.ufpb.dcx.gerenciadorDeFinancas.sistema.categoriaCompra categoriaCompra) {
+    public void setCategoriaCompra(categoriaCompra categoriaCompra) {
         this.categoriaCompra = categoriaCompra;
     }
 
@@ -47,5 +48,12 @@ public class Compra {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String toString(){
+        return "[Compra: "+this.categoriaCompra+
+                "\nValor: "+this.valorCompra+
+                "\nDescrição: "+this.descricao+
+                "\nID: "+this.idCompra+"]";
     }
 }

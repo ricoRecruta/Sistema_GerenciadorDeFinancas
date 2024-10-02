@@ -35,7 +35,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas{
 
     @Override
     public void cadastrarCompra(Compra compra) {
-        //TODO;
+        this.compras.put(compra.getIdCompra(), compra);
     }
 
     @Override

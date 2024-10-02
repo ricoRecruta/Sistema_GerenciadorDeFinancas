@@ -1,6 +1,5 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.login;
 
-import br.ufpb.*;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
 
 import java.util.Objects;
@@ -39,7 +38,11 @@ public class Conta {
         return false;
     }
 
-    public void setSalario( double salario){
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario){
         this.salario = salario;
     }
 }
