@@ -3,7 +3,7 @@ package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 import java.util.Collection;
 public interface SistemaGerenciadorFinancas {
 public void cadastrarSalario(double salario);
-public Collection<categoriaCompra> pesquisarPorCategoria(categoriaCompra categoria);
+public Collection<Compra> pesquisarPorCategoria(categoriaCompra categoria);
 public void cadastrarCompra(String descricao, double valor);
 public void editarSalario(double novoSalario);
 public double exibirTotalGasto();

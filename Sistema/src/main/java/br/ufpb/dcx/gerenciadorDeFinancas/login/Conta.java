@@ -1,19 +1,21 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.login;
 
 import br.ufpb.*;
+import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
+
 import java.util.Objects;
 
 public class Conta {
     private String nomeDoUsuario;
     private String senhaDoUsuario;
     private double salario;
-    private PersonalAdvisor personalAdvisor;
+    private SistemaFinancas personalAdvisor;
 
-    public Conta( String nomeDoUsuario, String senhaDoUsuario, double salario){
+    public Conta( String nomeDoUsuario, String senhaDoUsuario){
         this.nomeDoUsuario = nomeDoUsuario;
         this.senhaDoUsuario = senhaDoUsuario;
-        this.salario = salario;
-        personalAdvisor = new SistemaPersonalAdvisor();
+        this.salario = 0.0;
+        personalAdvisor = new SistemaFinancas(this);
     }
 
 
@@ -35,5 +37,9 @@ public class Conta {
             return true;
         }
         return false;
+    }
+
+    public void setSalario( double salario){
+        this.salario = salario;
     }
 }
