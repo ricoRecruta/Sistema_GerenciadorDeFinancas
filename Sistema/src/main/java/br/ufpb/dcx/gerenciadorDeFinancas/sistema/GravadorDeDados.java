@@ -10,7 +10,7 @@ public class GravadorDeDados {
     public static final String ARQUIVOS_RECEITAS = "lista_receitas.dat";
 
 
-    public HashMap<String, Despesa> recuperaDadosDasDespesas() throws IOException{
+    public HashMap<String, Despesa> recuperarDadosDasDespesas() throws IOException{
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARQUIVO_DESPESAS))){
             return (HashMap<String, Despesa>) in.readObject();
         }catch (ClassNotFoundException e){
@@ -23,7 +23,7 @@ public class GravadorDeDados {
             in.writeObject(despesas);
         }
     }
-    public HashMap<String, Receita> recuperaDadosDasRceitas() throws IOException{
+    public HashMap<String, Receita> recuperarDadosDasReceitas() throws IOException{
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARQUIVOS_RECEITAS))){
             return (HashMap<String, Receita>) in.readObject();
         }catch (ClassNotFoundException e){

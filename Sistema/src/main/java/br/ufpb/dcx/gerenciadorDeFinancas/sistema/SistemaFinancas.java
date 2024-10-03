@@ -144,8 +144,8 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
     public void recuperarDados(){
         try{
-            this.despesas = gravador.recuperaDadosDasDespesas();
-            this.receitas = gravador.recuperaDadosDasRceitas();
+            this.despesas = gravador.recuperarDadosDasDespesas();
+            this.receitas = gravador.recuperarDadosDasReceitas();
         } catch (IOException e){
             this.despesas = new HashMap<>();
             this.receitas = new HashMap<>();

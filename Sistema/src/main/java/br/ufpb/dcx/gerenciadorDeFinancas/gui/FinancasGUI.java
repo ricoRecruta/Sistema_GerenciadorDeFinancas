@@ -17,12 +17,12 @@ public class FinancasGUI extends JFrame {
         sistema = new SistemaFinancas();
         JLabel linha1;
 
-        setTitle("Financias");
+        setTitle("Finanças");
         setSize(800, 600);
         setLocation(400, 100);
         setResizable(false);
         getContentPane().setBackground(Color.white);
-        linha1 = new JLabel("Financias Gui", JLabel.CENTER);
+        linha1 = new JLabel("Finanças GUI", JLabel.CENTER);
         linha1.setForeground(Color.black);
         linha1.setFont(new Font("Serif", Font.BOLD, 24));
 
