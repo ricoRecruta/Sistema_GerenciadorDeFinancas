@@ -61,6 +61,7 @@ public interface SistemaGerenciadorFinancas {
      * @return O valor total gasto.
      */
     public double exibirTotalGasto();
+    public double exibirReceitaTotalDoMes(LocalDate data);
 
     /**
      * Exibe o valor total gasto com as despesas cadastradas no mês especificado.

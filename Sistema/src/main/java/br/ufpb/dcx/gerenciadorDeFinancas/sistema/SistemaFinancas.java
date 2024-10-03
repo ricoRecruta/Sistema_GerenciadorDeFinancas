@@ -7,25 +7,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
-/**
- * Classe que implementa a interface SistemaGerenciadorDeFinancas.
- * Permite cadastrar compras, salários, pesquisar compras por categoria,
- * editar e remover compras e exibir o total de gastos.
- */
+
 public class SistemaFinancas implements SistemaGerenciadorFinancas {
-    /** Mapa que armazena as compras, onde a chave é um identificador único da compra. */
+
     private Map<String, Despesa> despesas;
     private Map<String, Receita> receitas;
     private GravadorDeDados gravador = new GravadorDeDados();
 
-    /** Conta do usuário, que contém as informações financeiras como salário e pessoais do usuário. */
-    private double salario;
-
-    /**
-     * Construtor da classe SistemaFinancas.
-     *
-     * @param
-     */
     public SistemaFinancas() {
         this.despesas = new HashMap<>();
         this.receitas = new HashMap<>();
@@ -107,9 +95,9 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         return this.despesas.values().stream().mapToDouble(Despesa::getValorDespesa).sum();
     }
 
-
-    public double exibirTotalReceitaDoMes(LocalDate data) {
-        return this.despesas.values().stream().filter(despesas -> despesas.getData().getMonth().equals(data.getMonth())).mapToDouble(Despesa:: getValorDespesa).sum();
+    @Override
+    public double exibirReceitaTotalDoMes(LocalDate data) {
+        return this.receitas.values().stream().filter(receitas -> receitas.getData().getMonth().equals(data.getMonth())).mapToDouble(Receita:: getValor).sum();
     }
     @Override
     public double exibirTotalGastoDoMes(LocalDate data) {
@@ -120,14 +108,6 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     public Collection<Despesa> comparacaoDeGastos(double gasto1, double gasto2) {
         return null;
         //TODO;
-    }
-
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
     }
 
     public void salvarDados(){
