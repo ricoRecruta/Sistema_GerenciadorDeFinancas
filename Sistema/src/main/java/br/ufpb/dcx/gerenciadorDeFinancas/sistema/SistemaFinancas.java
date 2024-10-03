@@ -26,20 +26,23 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
      */
     public SistemaFinancas() {
         this.despesas = new HashMap<>();
-
-
+        this.receitas = new HashMap<>();
     }
 
 
     @Override
-    public void cadastrarSalario(double salario) {
-        this.salario = salario;
+    public void cadastrarReceita(Receita receita) {
+        this.receitas.put(receita.getIdReceita(), receita);
     }
 
 
     @Override
-    public void editarSalario(double novoSalario) {
-        this.salario = novoSalario;
+    public void editarValorReceita(String idReceita, double novaReceita)throws ReceitaNaoExistenteException {
+        if (this.receitas.containsKey(idReceita)) {
+            Receita receita = this.receitas.get(idReceita);
+            receita.setValor(novaReceita);
+        }
+        throw new ReceitaNaoExistenteException("Receita com ID: "+idReceita+" não existente!");
     }
 
 
@@ -102,6 +105,10 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         return this.despesas.values().stream().mapToDouble(Despesa::getValorDespesa).sum();
     }
 
+
+    public double exibirTotalReceitaDoMes(LocalDate data) {
+        return this.despesas.values().stream().filter(despesas -> despesas.getData().getMonth().equals(data.getMonth())).mapToDouble(Despesa:: getValorDespesa).sum();
+    }
     @Override
     public double exibirTotalGastoDoMes(LocalDate data) {
         return this.despesas.values().stream().filter(despesas -> despesas.getData().getMonth().equals(data.getMonth())).mapToDouble(Despesa:: getValorDespesa).sum();

@@ -10,16 +10,16 @@ public interface SistemaGerenciadorFinancas {
     /**
      * Cadastra o salário do usuário.
      *
-     * @param salario O valor do salário a ser cadastrado.
+     * @param receita O valor da receita a ser cadastrado.
      */
-    public void cadastrarSalario(double salario);
+    public void cadastrarReceita(Receita receita);
 
     /**
-     * Edita o valor do salário do usuário.
+     * Edita o valor da receita do usuário.
      *
-     * @param novoSalario O novo valor do salário a ser atualizado.
+     * @param novoReceita O novo valor do salário a ser atualizado.
      */
-    public void editarSalario(double novoSalario);
+    public void editarValorReceita(String id, double novoReceita) throws ReceitaNaoExistenteException;
 
     /**
      * Cadastra uma nova despesa no sistema.
@@ -61,6 +61,12 @@ public interface SistemaGerenciadorFinancas {
      * @return O valor total gasto.
      */
     public double exibirTotalGasto();
+
+    /**
+     * Exibe o valor total gasto com as despesas cadastradas no mês especificado.
+     *
+     * @return O valor total gasto.
+     */
     public double exibirTotalGastoDoMes(LocalDate data);
 
     /**
