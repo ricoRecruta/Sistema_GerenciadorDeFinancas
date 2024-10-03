@@ -1,50 +1,49 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 public class Despesa {
-    private String idReceita;
-    private CategoriaCompra categoriaCompra;
-    private double valorCompra;
+    private String idDespesa;
+    private CategoriaDespesa categoriaCompra;
+    private double valorDespesa;
     private String descricao;
     private LocalDate data;
 
 //teste
-    public Despesa(String id, CategoriaCompra categoriaCompra, double valorCompra, String descricao, LocalDate data){
-        this.idReceita = id;
-        this.categoriaCompra = categoriaCompra;
-        this.valorCompra = valorCompra;
+    public Despesa(String idDespesa, CategoriaDespesa categoriaDespesa, double valorDespesa, String descricao, LocalDate data){
+        this.idDespesa = idDespesa;
+        this.categoriaCompra = categoriaDespesa;
+        this.valorDespesa = valorDespesa;
         this.descricao = descricao;
          this.data = data;
     }
 
     public Despesa(){
-        this("",CategoriaCompra.OUTROS, 0.0, "",LocalDate.now());
+        this("", CategoriaDespesa.OUTROS, 0.0, "",LocalDate.now());
     }
 
-    public String getIdCompra() {
-        return idReceita;
+    public String getIdDespesa() {
+        return idDespesa;
     }
 
-    public void setIdCompra(String idCompra) {
-        this.idReceita = idCompra;
+    public void setIdDespesa(String novaIdDespesa) {
+        this.idDespesa = novaIdDespesa;
     }
 
-    public CategoriaCompra getCategoriaCompra() {
+    public CategoriaDespesa getCategoriaCompra() {
         return categoriaCompra;
     }
 
-    public void setCategoriaCompra(CategoriaCompra categoriaCompra) {
-        this.categoriaCompra = categoriaCompra;
+    public void setCategoriaCompra(CategoriaDespesa categoriaDespesa) {
+        this.categoriaCompra = categoriaDespesa;
     }
 
-    public double getValorCompra() {
-        return valorCompra;
+    public double getValorDespesa() {
+        return valorDespesa;
     }
 
-    public void setValorCompra(double valorCompra) {
-        this.valorCompra = valorCompra;
+    public void setValorDespesa(double valorDespesa) {
+        this.valorDespesa = valorDespesa;
     }
 
     public String getDescricao() {
@@ -56,9 +55,9 @@ public class Despesa {
     }
 
     public String toString(){
-        return "[Compra: "+this.categoriaCompra+
-                "\nValor: "+this.valorCompra+
+        return "[Despesa: "+this.categoriaCompra+
+                "\nValor: "+this.valorDespesa +
                 "\nDescrição: "+this.descricao+
-                "\nID: "+this.idReceita +"]";
+                "\nID: "+this.idDespesa +"]";
     }
 }

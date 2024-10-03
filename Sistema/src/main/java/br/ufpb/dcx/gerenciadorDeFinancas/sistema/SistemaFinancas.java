@@ -42,37 +42,37 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
 
     @Override
-    public void cadastrarCompra(Despesa compra) throws CompraJaCadastradaException {
-        if (compras.containsKey(compra.getIdCompra())) {
-            throw new CompraJaCadastradaException("Compra com o ID " + compra.getIdCompra() + "já cadastrada no sistema!");
+    public void cadastrarDespesa(Despesa despesa) throws DespesaJaCadastradaException {
+        if (compras.containsKey(despesa.getIdDespesa())) {
+            throw new DespesaJaCadastradaException("Compra com o ID " + despesa.getIdDespesa() + "já cadastrada no sistema!");
         }
-        this.compras.put(compra.getIdCompra(), compra);
+        this.compras.put(despesa.getIdDespesa(), despesa);
     }
 
 
     @Override
-    public void editarCompra(String idCompra, CategoriaCompra novaCategoria, double novoValor, String novaDescricao) throws CompraNaoExisteException {
-        if (compras.containsKey(idCompra)) {
-            Despesa compraExistente = compras.get(idCompra);
+    public void editarDespesa(String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao) throws DespesaNaoExisteException {
+        if (compras.containsKey(idDespesa)) {
+            Despesa compraExistente = compras.get(idDespesa);
             compraExistente.setCategoriaCompra(novaCategoria);
-            compraExistente.setValorCompra(novoValor);
+            compraExistente.setValorDespesa(novoValor);
             compraExistente.setDescricao(novaDescricao);
 
-            compras.put(idCompra, compraExistente);
+            compras.put(idDespesa, compraExistente);
         } else {
-            throw new CompraNaoExisteException("Compra com o ID " + idCompra + " não encontrada no sistema.");
+            throw new DespesaNaoExisteException("Compra com o ID " + idDespesa + " não encontrada no sistema.");
         }
     }
 
 
     @Override
-    public void removerCompra(Despesa compra) throws CompraNaoExisteException {
+    public void removerDespesa(Despesa despesa) throws DespesaNaoExisteException {
         //TODO
     }
 
 
     @Override
-    public Collection<Despesa> pesquisarPorCategoria(CategoriaCompra categoria) {
+    public Collection<Despesa> pesquisarPorCategoria(CategoriaDespesa categoria) {
         Collection<Despesa> comprasPorCategoria = new ArrayList<>();
 
         for (Despesa c : this.compras.values()) {
@@ -94,7 +94,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
 
     public double exibirTotalGasto() {
-        return this.compras.values().stream().mapToDouble(Despesa::getValorCompra).sum();
+        return this.compras.values().stream().mapToDouble(Despesa::getValorDespesa).sum();
     }
 
 

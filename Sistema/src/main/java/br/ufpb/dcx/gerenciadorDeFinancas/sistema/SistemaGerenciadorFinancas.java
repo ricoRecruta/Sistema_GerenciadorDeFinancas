@@ -21,41 +21,41 @@ public interface SistemaGerenciadorFinancas {
     public void editarSalario(double novoSalario);
 
     /**
-     * Cadastra uma nova compra no sistema.
+     * Cadastra uma nova despesa no sistema.
      *
-     * @param compra A compra a ser cadastrada.
-     * @throws CompraJaCadastradaException Se já existir uma compra com o mesmo identificador.
+     * @param despesa A despesa a ser cadastrada.
+     * @throws DespesaJaCadastradaException Se já existir uma despesa com o mesmo identificador.
      */
-    public void cadastrarCompra(Despesa compra) throws CompraJaCadastradaException;
+    public void cadastrarDespesa(Despesa despesa) throws DespesaJaCadastradaException;
     /**
      * Edita uma compra existente no sistema, atualizando seus dados com os novos valores fornecidos.
      *
-     * @param idCompra O ID da compra que será editada.
-     * @param novaCategoria A nova categoria da compra.
-     * @param novoValor O novo valor da compra.
-     * @param novaDescricao A nova descrição da compra.
-     * @throws CompraNaoExisteException Se a compra com o ID fornecido não estiver cadastrada no sistema.
+     * @param idDespesa O ID da despesa que será editada.
+     * @param novaCategoria A nova categoria da despesa.
+     * @param novoValor O novo valor da despesa.
+     * @param novaDescricao A nova descrição da despesa.
+     * @throws DespesaNaoExisteException Se a despesa com o ID fornecido não estiver cadastrada no sistema.
      */
-    public void editarCompra(String idCompra, CategoriaCompra novaCategoria, double novoValor, String novaDescricao) throws CompraNaoExisteException;
+    public void editarDespesa(String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao) throws DespesaNaoExisteException;
 
     /**
-     * Remove uma compra do sistema com base no objeto de compra fornecido.
+     * Remove uma despesa do sistema com base no objeto de despesa fornecido.
      *
-     * @param compra A compra a ser removida.
-     * @throws CompraNaoExisteException Se não houver uma compra com a descrição fornecida.
+     * @param despesa A despesa a ser removida.
+     * @throws DespesaNaoExisteException Se não houver uma despesa com a descrição fornecida.
      */
-    public void removerCompra(Despesa compra) throws CompraNaoExisteException;
+    public void removerDespesa(Despesa despesa) throws DespesaNaoExisteException;
 
     /**
-     * Pesquisa e retorna uma coleção de compras filtradas por categoria.
+     * Pesquisa e retorna uma coleção de despesas filtradas por categoria.
      *
-     * @param categoria A categoria de compra a ser filtrada.
-     * @return Uma coleção de compras que pertencem à categoria especificada.
+     * @param categoria A categoria de despesas a ser filtrada.
+     * @return Uma coleção de despesas que pertencem à categoria especificada.
      */
-    public Collection<Despesa> pesquisarPorCategoria(CategoriaCompra categoria);
+    public Collection<Despesa> pesquisarPorCategoria(CategoriaDespesa categoria);
 
     /**
-     * Exibe o valor total gasto com as compras cadastradas.
+     * Exibe o valor total gasto com as despesas cadastradas.
      *
      * @return O valor total gasto.
      */
