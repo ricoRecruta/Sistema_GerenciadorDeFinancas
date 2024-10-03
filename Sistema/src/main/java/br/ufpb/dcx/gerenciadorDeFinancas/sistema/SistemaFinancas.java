@@ -3,6 +3,7 @@ package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
 import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.*;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -15,6 +16,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     /** Mapa que armazena as compras, onde a chave é um identificador único da compra. */
     private Map<String, Despesa> despesas;
     private Map<String, Receita> receitas;
+    private GravadorDeDados gravador = new GravadorDeDados();
 
     /** Conta do usuário, que contém as informações financeiras como salário e pessoais do usuário. */
     private double salario;
@@ -126,5 +128,25 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
     public void setSalario(double salario) {
         this.salario = salario;
+    }
+
+    public void salvarDados(){
+        try{
+            gravador.gravarDespesas(this.despesas);
+            gravador.gravarReceitas(this.receitas);
+        } catch(IOException e){
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void recuperarDados(){
+        try{
+            this.despesas = gravador.recuperaDadosDasDespesas();
+            this.receitas = gravador.recuperaDadosDasRceitas();
+        } catch (IOException e){
+            this.despesas = new HashMap<>();
+            this.receitas = new HashMap<>();
+            System.err.println(e.getMessage());
+        }
     }
 }
