@@ -4,9 +4,9 @@ import br.ufpb.dcx.gerenciadorDeFinancas.sistema.categoriaCompra;
 
 import java.text.SimpleDateFormat;
 
-public class Compra{
-    private Chave idCompra;
-    private  categoriaCompra categoriaCompra;
+public class Despesas {
+    private Chave idReceita;
+    private CategoriaCompra categoriaCompra;
     private double valorCompra;
     private String descricao;
 

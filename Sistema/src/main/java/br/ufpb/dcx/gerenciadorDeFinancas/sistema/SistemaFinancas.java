@@ -1,6 +1,6 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
-import br.ufpb.dcx.gerenciadorDeFinancas.login.Conta;
+
 import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.*;
 import java.util.*;
 
@@ -11,19 +11,20 @@ import java.util.*;
  */
 public class SistemaFinancas implements SistemaGerenciadorFinancas {
     /** Mapa que armazena as compras, onde a chave é um identificador único da compra. */
-    private Map<Chave, Compra> compras;
+    private Map<Chave, Despesas> compras;
+    private Map<Chave, Receita> receitas;
 
     /** Conta do usuário, que contém as informações financeiras como salário e pessoais do usuário. */
-    private Conta conta;
+    private double salario;
 
     /**
      * Construtor da classe SistemaFinancas.
      *
-     * @param conta A conta financeira do usuário.
+     * @param
      */
-    public SistemaFinancas(Conta conta) {
+    public SistemaFinancas() {
         this.compras = new HashMap<>();
-        this.conta = conta;
+
 
     }
 
@@ -34,7 +35,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
      */
     @Override
     public void cadastrarSalario(double salario) {
-        conta.setSalario(salario);
+        this.salario = salario;
     }
 
     /**
@@ -44,7 +45,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
      */
     @Override
     public void editarSalario(double novoSalario) {
-        this.conta.setSalario(novoSalario);
+        this.salario = novoSalario;
     }
 
     /**
@@ -54,7 +55,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
      * @throws CompraJaCadastradaException Se já existir uma compra com o mesmo identificador.
      */
     @Override
-    public void cadastrarCompra(Compra compra) throws CompraJaCadastradaException {
+    public void cadastrarCompra(Despesas compra) throws CompraJaCadastradaException {
         if (compras.containsKey(compra.getIdCompra())) {
             throw new CompraJaCadastradaException("Compra com o ID " + compra.getIdCompra() + "já cadastrada no sistema!");
         }
@@ -71,9 +72,9 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
      * @throws CompraNaoExisteException Se a compra com o ID fornecido não estiver cadastrada no sistema.
      */
     @Override
-    public void editarCompra(Chave idCompra, categoriaCompra novaCategoria, double novoValor, String novaDescricao) throws CompraNaoExisteException {
+    public void editarCompra(Chave idCompra, CategoriaCompra novaCategoria, double novoValor, String novaDescricao) throws CompraNaoExisteException {
         if (compras.containsKey(idCompra)) {
-            Compra compraExistente = compras.get(idCompra);
+            Despesas compraExistente = compras.get(idCompra);
             compraExistente.setCategoriaCompra(novaCategoria);
             compraExistente.setValorCompra(novoValor);
             compraExistente.setDescricao(novaDescricao);
@@ -91,7 +92,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
      * @throws CompraNaoExisteException Se não houver uma compra com a descrição fornecida.
      */
     @Override
-    public void removerCompra(Compra compra) throws CompraNaoExisteException {
+    public void removerCompra(Despesas compra) throws CompraNaoExisteException {
         //TODO
     }
 
@@ -102,10 +103,10 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
      * @return Uma coleção de compras que pertencem à categoria especificada.
      */
     @Override
-    public Collection<Compra> pesquisarPorCategoria(categoriaCompra categoria) {
-        Collection<Compra> comprasPorCategoria = new ArrayList<>();
+    public Collection<Despesas> pesquisarPorCategoria(CategoriaCompra categoria) {
+        Collection<Despesas> comprasPorCategoria = new ArrayList<>();
 
-        for (Compra c : this.compras.values()) {
+        for (Despesas c : this.compras.values()) {
             if (c.getCategoriaCompra() == categoria) {
                 comprasPorCategoria.add(c);
             }
@@ -128,7 +129,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
      * @return O valor total gasto.
      */
     public double exibirTotalGasto() {
-        return this.compras.values().stream().mapToDouble(Compra::getValorCompra).sum();
+        return this.compras.values().stream().mapToDouble(Despesas::getValorCompra).sum();
     }
 
     /**
@@ -139,8 +140,16 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
      * @return Uma coleção de compras cujos valores estão entre os gastos especificados.
      */
     @Override
-    public Collection<Compra> comparacaoDeGastos(double gasto1, double gasto2) {
+    public Collection<Despesas> comparacaoDeGastos(double gasto1, double gasto2) {
         return null;
         //TODO;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
     }
 }
