@@ -14,8 +14,8 @@ public class SistemaFinancasTest {
         SistemaFinancas sistema = new SistemaFinancas();
 
         //Teste método exibirTotalGasto
-        Despesa compraTeste = new Despesa(CategoriaCompra.ALIMENTACAO, 10.50, "bananas");
-        Despesa compraTeste2 = new Despesa(CategoriaCompra.LAZER, 53, "cinema");
+        Despesa compraTeste = new Despesa("",CategoriaCompra.ALIMENTACAO, 10.50, "bananas");
+        Despesa compraTeste2 = new Despesa("",CategoriaCompra.LAZER, 53, "cinema");
         try {
             sistema.cadastrarCompra(compraTeste);
             sistema.cadastrarCompra(compraTeste2);
