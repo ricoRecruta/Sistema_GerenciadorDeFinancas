@@ -73,10 +73,10 @@ public interface SistemaGerenciadorFinancas {
     /**
      * Compara os gastos de duas compras e retorna uma coleção de compras entre esses valores.
      *
-     * @param gasto1 O primeiro valor de gasto para comparação.
-     * @param gasto2 O segundo valor de gasto para comparação.
-     * @return Uma coleção de compras cujos valores estão entre os gastos especificados.
+     * @param data Recebe uma data para comparação.
+     * @param  mes recebe um mês para comparação.
+     * @return Uma String para dizer se o saldo foi positivo ou negativo.
      */
-    public Collection<Despesa> comparacaoDeGastos(double gasto1, double gasto2);
+    public String verificarSaldoDoMes(LocalDate data, int mes);
 
 }

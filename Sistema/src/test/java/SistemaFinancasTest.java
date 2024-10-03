@@ -1,5 +1,6 @@
 
 import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.DespesaJaCadastradaException;
+import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.DespesaNaoExisteException;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.Despesa;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.CategoriaDespesa;
@@ -12,6 +13,25 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SistemaFinancasTest {
+
+
+    @Test
+    public void testRemoverDespesa() throws DespesaNaoExisteException {
+        SistemaFinancas sistema = new SistemaFinancas();
+
+        Despesa despesa1 = new Despesa("1", CategoriaDespesa.ALIMENTACAO, 100.0, "Feira de alimentos",LocalDate.now());
+        try {
+            sistema.cadastrarDespesa(despesa1);
+        }catch (DespesaJaCadastradaException e){
+            System.out.println(e.getMessage());
+            fail();
+        }
+        sistema.removerDespesa(despesa1);
+
+        assertFalse(sistema.getDespesas().containsKey(despesa1.getIdDespesa()));
+
+
+    }
 
     @Test
     public void testaEditarSalarioETotal(){
@@ -28,6 +48,12 @@ public class SistemaFinancasTest {
             System.out.println(e.getMessage());
         }
         assertFalse(sistema.exibirTotalGastoDoMes(LocalDate.now().withMonth(5)) == 63.1);
+
+
+
+
+
+
 
 
         /*//Teste método editarSalario

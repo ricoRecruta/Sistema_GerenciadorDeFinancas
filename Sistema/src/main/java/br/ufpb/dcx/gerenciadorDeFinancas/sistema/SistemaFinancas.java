@@ -66,9 +66,22 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
     @Override
     public void removerDespesa(Despesa despesa) throws DespesaNaoExisteException {
-        //TODO
+        String id = despesa.getIdDespesa();
+
+        if(!despesas.containsKey(id)){
+            throw new DespesaNaoExisteException("A despesa com id: "+ id + " não existe");
+        }
+        despesas.remove(id);
+
     }
 
+    public Map<String, Despesa> getDespesas() {
+        return despesas;
+    }
+
+    public Map<String, Receita> getReceitas() {
+        return receitas;
+    }
 
     @Override
     public Collection<Despesa> pesquisarPorCategoria(CategoriaDespesa categoria) {
@@ -105,9 +118,17 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     }
 
     @Override
-    public Collection<Despesa> comparacaoDeGastos(double gasto1, double gasto2) {
-        return null;
-        //TODO;
+    public String verificarSaldoDoMes(LocalDate data, int mes) { //Para ver se a pessoa ficou no débito
+        double totalReceitas = exibirReceitaTotalDoMes(data.withMonth(mes));
+
+        double totalDespesas = exibirReceitaTotalDoMes(data.withMonth(mes));
+
+        double saldo = totalReceitas - totalDespesas;
+
+        if(saldo < 0){
+            return "Seu Saldo deste mês: " + mes + " foi negativo.\n" + "Saldo = " + saldo;
+        }
+        return "Seu Saldo do mês de " + mes + " foi positivo.\n" + "Saldo = " + saldo;
     }
 
     public void salvarDados(){
