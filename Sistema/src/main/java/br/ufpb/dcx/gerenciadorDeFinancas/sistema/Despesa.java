@@ -15,7 +15,7 @@ public class Despesa {
         this.categoriaDespesa = categoriaDespesa;
         this.valorDespesa = valorDespesa;
         this.descricao = descricao;
-         this.data = data;
+        this.data = data;
     }
 
     public Despesa(){
@@ -46,6 +46,14 @@ public class Despesa {
         this.valorDespesa = valorDespesa;
     }
 
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
     public String getDescricao() {
         return descricao;
     }
@@ -58,6 +66,7 @@ public class Despesa {
         return "[Despesa: "+this.categoriaDespesa +
                 "\nValor: "+this.valorDespesa +
                 "\nDescrição: "+this.descricao+
+                "\nData: "+this.data+
                 "\nID: "+this.idDespesa +"]";
     }
 }
