@@ -1,5 +1,7 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GeradorDeChave {
@@ -8,28 +10,35 @@ public class GeradorDeChave {
     private static final String NUMEROS = "1234567890";
     private static final String CONJUNTO_ALFANUMERICO = ALFABETO_LOWER + ALFABETO_UPPER + NUMEROS;
     private Random sort = new Random();
+    private long numeroDePossibilidades =  (long)Math.pow(CONJUNTO_ALFANUMERICO.length(),8);
+    private long contador = 0;
+    private ArrayList<String> listaDeTodasAsChaves = new ArrayList<>();
 
-    public String geradorDeChaveAlfaNumerico() {
-        int quantidadeDeCaracteresDaChave = 8;
-        StringBuilder chave = new StringBuilder();
+    public String geradorDeChaveAlfaNumerico() throws IOException {
 
-        for (int i = 0; i < quantidadeDeCaracteresDaChave; i++) {
-            int indice = sort.nextInt(CONJUNTO_ALFANUMERICO.length());
-            chave.append(CONJUNTO_ALFANUMERICO.charAt(indice));
-        }
-        return chave.toString();
+            while(contador < numeroDePossibilidades) {
+                int quantidadeDeCaracteresDaChave = 8;
+                StringBuilder chave = new StringBuilder();
+                String chaveTotaltemporaria = CONJUNTO_ALFANUMERICO;
+
+
+                for (int i = 0; i < quantidadeDeCaracteresDaChave; i++) {
+                    int indice = sort.nextInt(CONJUNTO_ALFANUMERICO.length());
+                    chave.append(CONJUNTO_ALFANUMERICO.charAt(indice));
+                }
+
+                String chaveSorteada = chave.toString();
+
+
+                if (listaDeTodasAsChaves.contains(chaveSorteada)) {
+                    geradorDeChaveAlfaNumerico();
+                } else {
+                    listaDeTodasAsChaves.add(chaveSorteada);
+                    contador++;
+                    return chaveSorteada;
+                }
+            }
+            throw new IOException("Não foi possivel gerar uma chave");
     }
 
-
-    public int chaveNumerica() {
-        int quantidadeDeNumerosDaChave = 15;
-        StringBuilder chave = new StringBuilder();
-
-        for (int i = 0; i < quantidadeDeNumerosDaChave; i++) {
-            int indice = sort.nextInt(10);
-            chave.append(indice);
-        }
-
-        return Integer.parseInt(chave.toString());
-    }
 }
