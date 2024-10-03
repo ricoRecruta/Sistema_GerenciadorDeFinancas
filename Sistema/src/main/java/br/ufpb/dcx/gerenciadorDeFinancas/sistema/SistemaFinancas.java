@@ -43,12 +43,13 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
     @Override
     public void cadastrarDespesa(Despesa despesa) throws DespesaJaCadastradaException {
-
-
-        if (despesas.containsKey(despesa.getIdDespesa())) {
-            throw new DespesaJaCadastradaException("Compra com o ID " + despesa.getIdDespesa() + "já cadastrada no sistema!");
+        for (Despesa a: this.despesas.values()){
+            if (despesas.containsKey(despesa.getIdDespesa()) && a.getData() == despesa.getData()){
+                throw new DespesaJaCadastradaException("Compra com o ID " + despesa.getIdDespesa() + "já cadastrada no sistema!");
+            }else {
+                this.despesas.put(despesa.getIdDespesa(), despesa);
+            }
         }
-        this.despesas.put(despesa.getIdDespesa(), despesa);
     }
 
 
