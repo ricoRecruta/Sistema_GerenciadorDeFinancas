@@ -61,6 +61,7 @@ public interface SistemaGerenciadorFinancas {
      * @return O valor total gasto.
      */
     public double exibirTotalGasto();
+    public double exibirTotalGastoDoMes(LocalDate data);
 
     /**
      * Compara os gastos de duas compras e retorna uma coleção de compras entre esses valores.

@@ -46,7 +46,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     @Override
     public void cadastrarDespesa(Despesa despesa) throws DespesaJaCadastradaException {
         for (Despesa a: this.despesas.values()) {
-            if (a.getData().equals(despesa.getData())) {
+            if (a.equals(despesa)){
                 throw new DespesaJaCadastradaException("Compra com o ID " + despesa.getIdDespesa() + ", e Data " + despesa.getData() + " já cadastrada no sistema!");
             }
         }
@@ -97,12 +97,15 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         }
         return valorTotal;
     }*/
-
-
+    @Override
     public double exibirTotalGasto() {
         return this.despesas.values().stream().mapToDouble(Despesa::getValorDespesa).sum();
     }
 
+    @Override
+    public double exibirTotalGastoDoMes(LocalDate data) {
+        return this.despesas.values().stream().filter(despesas -> despesas.getData().getMonth().equals(data.getMonth())).mapToDouble(Despesa:: getValorDespesa).sum();
+    }
 
     @Override
     public Collection<Despesa> comparacaoDeGastos(double gasto1, double gasto2) {
