@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Despesa {
     private String idDespesa;
-    private CategoriaDespesa categoriaCompra;
+    private CategoriaDespesa categoriaDespesa;
     private double valorDespesa;
     private String descricao;
     private LocalDate data;
@@ -12,7 +12,7 @@ public class Despesa {
 //teste
     public Despesa(String idDespesa, CategoriaDespesa categoriaDespesa, double valorDespesa, String descricao, LocalDate data){
         this.idDespesa = idDespesa;
-        this.categoriaCompra = categoriaDespesa;
+        this.categoriaDespesa = categoriaDespesa;
         this.valorDespesa = valorDespesa;
         this.descricao = descricao;
          this.data = data;
@@ -30,12 +30,12 @@ public class Despesa {
         this.idDespesa = novaIdDespesa;
     }
 
-    public CategoriaDespesa getCategoriaCompra() {
-        return categoriaCompra;
+    public CategoriaDespesa getCategoriaDespesa() {
+        return categoriaDespesa;
     }
 
-    public void setCategoriaCompra(CategoriaDespesa categoriaDespesa) {
-        this.categoriaCompra = categoriaDespesa;
+    public void setCategoriaDespesa(CategoriaDespesa categoriaDespesa) {
+        this.categoriaDespesa = categoriaDespesa;
     }
 
     public double getValorDespesa() {
@@ -55,7 +55,7 @@ public class Despesa {
     }
 
     public String toString(){
-        return "[Despesa: "+this.categoriaCompra+
+        return "[Despesa: "+this.categoriaDespesa +
                 "\nValor: "+this.valorDespesa +
                 "\nDescrição: "+this.descricao+
                 "\nID: "+this.idDespesa +"]";

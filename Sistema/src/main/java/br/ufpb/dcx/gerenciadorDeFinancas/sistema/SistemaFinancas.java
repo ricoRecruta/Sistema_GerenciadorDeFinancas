@@ -54,7 +54,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     public void editarDespesa(String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao) throws DespesaNaoExisteException {
         if (compras.containsKey(idDespesa)) {
             Despesa compraExistente = compras.get(idDespesa);
-            compraExistente.setCategoriaCompra(novaCategoria);
+            compraExistente.setCategoriaDespesa(novaCategoria);
             compraExistente.setValorDespesa(novoValor);
             compraExistente.setDescricao(novaDescricao);
 
@@ -76,7 +76,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         Collection<Despesa> comprasPorCategoria = new ArrayList<>();
 
         for (Despesa c : this.compras.values()) {
-            if (c.getCategoriaCompra() == categoria) {
+            if (c.getCategoriaDespesa() == categoria) {
                 comprasPorCategoria.add(c);
             }
         }
