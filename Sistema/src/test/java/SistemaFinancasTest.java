@@ -1,10 +1,8 @@
 
 import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.DespesaJaCadastradaException;
 import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.DespesaNaoExisteException;
-import br.ufpb.dcx.gerenciadorDeFinancas.sistema.Despesa;
-import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
-import br.ufpb.dcx.gerenciadorDeFinancas.sistema.CategoriaDespesa;
-import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaGerenciadorFinancas;
+import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.ReceitaNaoExistenteException;
+import br.ufpb.dcx.gerenciadorDeFinancas.sistema.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -34,7 +32,7 @@ public class SistemaFinancasTest {
     }
 
     @Test
-    public void testaEditarSalarioETotal(){
+    public void testaExibirTotalDoMes(){
 
         SistemaFinancas sistema = new SistemaFinancas();
 
@@ -49,22 +47,26 @@ public class SistemaFinancasTest {
         }
         assertFalse(sistema.exibirTotalGastoDoMes(LocalDate.now().withMonth(5)) == 63.1);
 
+    }
 
+    @Test
+    public void testCadastrarEEditarValorReceita(){
+        SistemaFinancas sistema = new SistemaFinancas();
+        assertEquals(0, sistema.getReceitas().size());
 
+        Receita receitaTeste = new Receita("123", 1500, LocalDate.now());
+        sistema.cadastrarReceita(receitaTeste);
 
-
-
-
-
-        /*//Teste método editarSalario
-        sistema.cadastrarSalario(1300);
-        assertEquals(1300, sistema.getSalario());
-
-        sistema.editarSalario(2300);
-        assertEquals(2300, sistema.getSalario());*/
-
+        try {
+            sistema.editarValorReceita(receitaTeste.getIdReceita(), 2500);
+        }catch (ReceitaNaoExistenteException e){
+            System.out.println(e.getMessage());
+        }
+        assertTrue(sistema.getReceitas().get(receitaTeste.getIdReceita()).getValor() == 2500);
 
     }
+
+
     /*@Test
     public void testaCadatroDespesa(){
         SistemaGerenciadorFinancas sistema = new SistemaFinancas();

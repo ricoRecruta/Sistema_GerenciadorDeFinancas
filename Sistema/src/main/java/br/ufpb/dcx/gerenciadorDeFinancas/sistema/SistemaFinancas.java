@@ -31,9 +31,11 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         if (this.receitas.containsKey(idReceita)) {
             Receita receita = this.receitas.get(idReceita);
             receita.setValor(novaReceita);
+        }else {
+            throw new ReceitaNaoExistenteException("Receita com ID: " + idReceita + " não existente!");
         }
-        throw new ReceitaNaoExistenteException("Receita com ID: "+idReceita+" não existente!");
     }
+
 
 
     @Override
@@ -80,7 +82,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     }
 
     public Map<String, Receita> getReceitas() {
-        return receitas;
+        return this.receitas;
     }
 
     @Override
