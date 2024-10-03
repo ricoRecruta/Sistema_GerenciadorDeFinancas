@@ -2,13 +2,14 @@ package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
 import java.text.SimpleDateFormat;
 
-public class Despesas {
+public class Despesa {
     private String idReceita;
     private CategoriaCompra categoriaCompra;
     private double valorCompra;
     private String descricao;
+
 //teste
-    public Despesas(String id, CategoriaCompra categoriaCompra, double valorCompra, String descricao){
+    public Despesa(String id, CategoriaCompra categoriaCompra, double valorCompra, String descricao){
         this.idReceita = id;
         this.categoriaCompra = categoriaCompra;
         this.valorCompra = valorCompra;
@@ -16,7 +17,7 @@ public class Despesas {
         SimpleDateFormat data = new SimpleDateFormat("dd/MM/yy");
     }
 
-    public Despesas(){
+    public Despesa(){
         this("",CategoriaCompra.OUTROS, 0.0, "");
     }
 

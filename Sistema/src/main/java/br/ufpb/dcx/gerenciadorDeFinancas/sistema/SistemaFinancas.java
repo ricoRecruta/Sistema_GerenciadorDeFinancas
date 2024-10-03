@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class SistemaFinancas implements SistemaGerenciadorFinancas {
     /** Mapa que armazena as compras, onde a chave é um identificador único da compra. */
-    private Map<String, Despesas> compras;
+    private Map<String, Despesa> compras;
     private Map<String, Receita> receitas;
 
     /** Conta do usuário, que contém as informações financeiras como salário e pessoais do usuário. */
@@ -42,7 +42,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
 
     @Override
-    public void cadastrarCompra(Despesas compra) throws CompraJaCadastradaException {
+    public void cadastrarCompra(Despesa compra) throws CompraJaCadastradaException {
         if (compras.containsKey(compra.getIdCompra())) {
             throw new CompraJaCadastradaException("Compra com o ID " + compra.getIdCompra() + "já cadastrada no sistema!");
         }
@@ -53,7 +53,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     @Override
     public void editarCompra(String idCompra, CategoriaCompra novaCategoria, double novoValor, String novaDescricao) throws CompraNaoExisteException {
         if (compras.containsKey(idCompra)) {
-            Despesas compraExistente = compras.get(idCompra);
+            Despesa compraExistente = compras.get(idCompra);
             compraExistente.setCategoriaCompra(novaCategoria);
             compraExistente.setValorCompra(novoValor);
             compraExistente.setDescricao(novaDescricao);
@@ -66,16 +66,16 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
 
     @Override
-    public void removerCompra(Despesas compra) throws CompraNaoExisteException {
+    public void removerCompra(Despesa compra) throws CompraNaoExisteException {
         //TODO
     }
 
 
     @Override
-    public Collection<Despesas> pesquisarPorCategoria(CategoriaCompra categoria) {
-        Collection<Despesas> comprasPorCategoria = new ArrayList<>();
+    public Collection<Despesa> pesquisarPorCategoria(CategoriaCompra categoria) {
+        Collection<Despesa> comprasPorCategoria = new ArrayList<>();
 
-        for (Despesas c : this.compras.values()) {
+        for (Despesa c : this.compras.values()) {
             if (c.getCategoriaCompra() == categoria) {
                 comprasPorCategoria.add(c);
             }
@@ -94,12 +94,12 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
 
     public double exibirTotalGasto() {
-        return this.compras.values().stream().mapToDouble(Despesas::getValorCompra).sum();
+        return this.compras.values().stream().mapToDouble(Despesa::getValorCompra).sum();
     }
 
 
     @Override
-    public Collection<Despesas> comparacaoDeGastos(double gasto1, double gasto2) {
+    public Collection<Despesa> comparacaoDeGastos(double gasto1, double gasto2) {
         return null;
         //TODO;
     }

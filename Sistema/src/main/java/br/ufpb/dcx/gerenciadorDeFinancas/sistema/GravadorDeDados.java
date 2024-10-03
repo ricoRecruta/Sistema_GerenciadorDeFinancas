@@ -10,15 +10,15 @@ public class GravadorDeDados {
     public static final String ARQUIVOS_RECEITAS = "lista_receitas.dat";
 
 
-    public HashMap<String, Despesas> recuperaDadosDasDespesas() throws IOException{
+    public HashMap<String, Despesa> recuperaDadosDasDespesas() throws IOException{
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(ARQUIVO_DESPESAS))){
-            return (HashMap<String, Despesas>) in.readObject();
+            return (HashMap<String, Despesa>) in.readObject();
         }catch (ClassNotFoundException e){
             throw new IOException(e);
         }
     }
 
-    public void gravarDespesas(Map<String, Despesas> despesas) throws IOException{
+    public void gravarDespesas(Map<String, Despesa> despesas) throws IOException{
         try(ObjectOutputStream in = new ObjectOutputStream(new FileOutputStream(ARQUIVO_DESPESAS))){
             in.writeObject(despesas);
         }

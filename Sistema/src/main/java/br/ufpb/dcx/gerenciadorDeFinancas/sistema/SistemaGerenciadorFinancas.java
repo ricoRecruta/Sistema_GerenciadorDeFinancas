@@ -26,7 +26,7 @@ public interface SistemaGerenciadorFinancas {
      * @param compra A compra a ser cadastrada.
      * @throws CompraJaCadastradaException Se já existir uma compra com o mesmo identificador.
      */
-    public void cadastrarCompra(Despesas compra) throws CompraJaCadastradaException;
+    public void cadastrarCompra(Despesa compra) throws CompraJaCadastradaException;
     /**
      * Edita uma compra existente no sistema, atualizando seus dados com os novos valores fornecidos.
      *
@@ -44,7 +44,7 @@ public interface SistemaGerenciadorFinancas {
      * @param compra A compra a ser removida.
      * @throws CompraNaoExisteException Se não houver uma compra com a descrição fornecida.
      */
-    public void removerCompra(Despesas compra) throws CompraNaoExisteException;
+    public void removerCompra(Despesa compra) throws CompraNaoExisteException;
 
     /**
      * Pesquisa e retorna uma coleção de compras filtradas por categoria.
@@ -52,7 +52,7 @@ public interface SistemaGerenciadorFinancas {
      * @param categoria A categoria de compra a ser filtrada.
      * @return Uma coleção de compras que pertencem à categoria especificada.
      */
-    public Collection<Despesas> pesquisarPorCategoria(CategoriaCompra categoria);
+    public Collection<Despesa> pesquisarPorCategoria(CategoriaCompra categoria);
 
     /**
      * Exibe o valor total gasto com as compras cadastradas.
@@ -68,6 +68,6 @@ public interface SistemaGerenciadorFinancas {
      * @param gasto2 O segundo valor de gasto para comparação.
      * @return Uma coleção de compras cujos valores estão entre os gastos especificados.
      */
-    public Collection<Despesas> comparacaoDeGastos(double gasto1, double gasto2);
+    public Collection<Despesa> comparacaoDeGastos(double gasto1, double gasto2);
 
 }
