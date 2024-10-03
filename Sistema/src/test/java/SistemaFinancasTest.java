@@ -4,6 +4,8 @@ import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.CategoriaCompra;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SistemaFinancasTest {
@@ -14,8 +16,8 @@ public class SistemaFinancasTest {
         SistemaFinancas sistema = new SistemaFinancas();
 
         //Teste método exibirTotalGasto
-        Despesa compraTeste = new Despesa("",CategoriaCompra.ALIMENTACAO, 10.50, "bananas");
-        Despesa compraTeste2 = new Despesa("",CategoriaCompra.LAZER, 53, "cinema");
+        Despesa compraTeste = new Despesa("",CategoriaCompra.ALIMENTACAO, 10.50, "bananas",LocalDate.now());
+        Despesa compraTeste2 = new Despesa("",CategoriaCompra.LAZER, 53, "cinema", LocalDate.now());
         try {
             sistema.cadastrarCompra(compraTeste);
             sistema.cadastrarCompra(compraTeste2);
