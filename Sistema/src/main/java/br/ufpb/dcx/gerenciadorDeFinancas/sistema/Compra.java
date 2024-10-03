@@ -1,6 +1,9 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.categoriaCompra;
+
+import java.text.SimpleDateFormat;
+
 public class Compra{
     private Chave idCompra;
     private  categoriaCompra categoriaCompra;
@@ -12,6 +15,7 @@ public class Compra{
         this.categoriaCompra = categoriaCompra;
         this.valorCompra = valorCompra;
         this.descricao = descricao;
+        SimpleDateFormat data = new SimpleDateFormat("dd/MM/yy");
     }
 
     /*public Compra(){
