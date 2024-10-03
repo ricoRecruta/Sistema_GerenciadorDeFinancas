@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class SistemaFinancas implements SistemaGerenciadorFinancas {
     /** Mapa que armazena as compras, onde a chave é um identificador único da compra. */
-    private Map<String, Despesa> compras;
+    private Map<String, Despesa> despesas;
     private Map<String, Receita> receitas;
 
     /** Conta do usuário, que contém as informações financeiras como salário e pessoais do usuário. */
@@ -23,7 +23,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
      * @param
      */
     public SistemaFinancas() {
-        this.compras = new HashMap<>();
+        this.despesas = new HashMap<>();
 
 
     }
@@ -43,22 +43,24 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
     @Override
     public void cadastrarDespesa(Despesa despesa) throws DespesaJaCadastradaException {
-        if (compras.containsKey(despesa.getIdDespesa())) {
+
+
+        if (despesas.containsKey(despesa.getIdDespesa())) {
             throw new DespesaJaCadastradaException("Compra com o ID " + despesa.getIdDespesa() + "já cadastrada no sistema!");
         }
-        this.compras.put(despesa.getIdDespesa(), despesa);
+        this.despesas.put(despesa.getIdDespesa(), despesa);
     }
 
 
     @Override
     public void editarDespesa(String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao) throws DespesaNaoExisteException {
-        if (compras.containsKey(idDespesa)) {
-            Despesa compraExistente = compras.get(idDespesa);
+        if (despesas.containsKey(idDespesa)) {
+            Despesa compraExistente = despesas.get(idDespesa);
             compraExistente.setCategoriaDespesa(novaCategoria);
             compraExistente.setValorDespesa(novoValor);
             compraExistente.setDescricao(novaDescricao);
 
-            compras.put(idDespesa, compraExistente);
+            despesas.put(idDespesa, compraExistente);
         } else {
             throw new DespesaNaoExisteException("Compra com o ID " + idDespesa + " não encontrada no sistema.");
         }
@@ -75,7 +77,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     public Collection<Despesa> pesquisarPorCategoria(CategoriaDespesa categoria) {
         Collection<Despesa> comprasPorCategoria = new ArrayList<>();
 
-        for (Despesa c : this.compras.values()) {
+        for (Despesa c : this.despesas.values()) {
             if (c.getCategoriaDespesa() == categoria) {
                 comprasPorCategoria.add(c);
             }
@@ -94,7 +96,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
 
     public double exibirTotalGasto() {
-        return this.compras.values().stream().mapToDouble(Despesa::getValorDespesa).sum();
+        return this.despesas.values().stream().mapToDouble(Despesa::getValorDespesa).sum();
     }
 
 
