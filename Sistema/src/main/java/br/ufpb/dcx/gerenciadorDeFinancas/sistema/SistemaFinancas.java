@@ -11,8 +11,8 @@ import java.util.*;
  */
 public class SistemaFinancas implements SistemaGerenciadorFinancas {
     /** Mapa que armazena as compras, onde a chave é um identificador único da compra. */
-    private Map<Chave, Despesas> compras;
-    private Map<Chave, Receita> receitas;
+    private Map<String, Despesas> compras;
+    private Map<String, Receita> receitas;
 
     /** Conta do usuário, que contém as informações financeiras como salário e pessoais do usuário. */
     private double salario;
@@ -51,7 +51,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
 
     @Override
-    public void editarCompra(Chave idCompra, CategoriaCompra novaCategoria, double novoValor, String novaDescricao) throws CompraNaoExisteException {
+    public void editarCompra(String idCompra, CategoriaCompra novaCategoria, double novoValor, String novaDescricao) throws CompraNaoExisteException {
         if (compras.containsKey(idCompra)) {
             Despesas compraExistente = compras.get(idCompra);
             compraExistente.setCategoriaCompra(novaCategoria);

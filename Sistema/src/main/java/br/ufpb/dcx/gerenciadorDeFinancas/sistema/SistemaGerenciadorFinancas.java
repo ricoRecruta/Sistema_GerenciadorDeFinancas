@@ -36,7 +36,7 @@ public interface SistemaGerenciadorFinancas {
      * @param novaDescricao A nova descrição da compra.
      * @throws CompraNaoExisteException Se a compra com o ID fornecido não estiver cadastrada no sistema.
      */
-    public void editarCompra(Chave idCompra, CategoriaCompra novaCategoria, double novoValor, String novaDescricao) throws CompraNaoExisteException;
+    public void editarCompra(String idCompra, CategoriaCompra novaCategoria, double novoValor, String novaDescricao) throws CompraNaoExisteException;
 
     /**
      * Remove uma compra do sistema com base no objeto de compra fornecido.

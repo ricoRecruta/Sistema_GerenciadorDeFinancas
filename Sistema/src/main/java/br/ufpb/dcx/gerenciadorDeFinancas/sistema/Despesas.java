@@ -3,13 +3,13 @@ package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 import java.text.SimpleDateFormat;
 
 public class Despesas {
-    private Chave idReceita;
+    private String idReceita;
     private CategoriaCompra categoriaCompra;
     private double valorCompra;
     private String descricao;
 //teste
-    public Despesas(CategoriaCompra categoriaCompra, double valorCompra, String descricao){
-        this.idReceita = new Chave();
+    public Despesas(String id, CategoriaCompra categoriaCompra, double valorCompra, String descricao){
+        this.idReceita = id;
         this.categoriaCompra = categoriaCompra;
         this.valorCompra = valorCompra;
         this.descricao = descricao;
@@ -17,14 +17,14 @@ public class Despesas {
     }
 
     public Despesas(){
-        this(CategoriaCompra.OUTROS, 0.0, "");
+        this("",CategoriaCompra.OUTROS, 0.0, "");
     }
 
-    public Chave getIdCompra() {
+    public String getIdCompra() {
         return idReceita;
     }
 
-    public void setIdCompra(Chave idCompra) {
+    public void setIdCompra(String idCompra) {
         this.idReceita = idCompra;
     }
 

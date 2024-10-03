@@ -2,15 +2,15 @@ package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
 public class Receita {
 
-    private Chave idReceita;
+    private String idReceita;
     private double valor;
 
-    public Receita(double valor){
-        this.idReceita = new Chave();
+    public Receita(String id, double valor){
+        this.idReceita = id;
         this.valor = valor;
     }
     public Receita(){
-        this(0.0);
+        this("",0);
     }
 
     public double getValor(){
