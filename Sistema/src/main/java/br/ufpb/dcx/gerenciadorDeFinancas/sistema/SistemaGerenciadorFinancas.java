@@ -2,6 +2,7 @@ package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
 import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.*;
 
+import java.time.LocalDate;
 import java.util.Collection;
 
 public interface SistemaGerenciadorFinancas {
@@ -36,7 +37,7 @@ public interface SistemaGerenciadorFinancas {
      * @param novaDescricao A nova descrição da despesa.
      * @throws DespesaNaoExisteException Se a despesa com o ID fornecido não estiver cadastrada no sistema.
      */
-    public void editarDespesa(String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao) throws DespesaNaoExisteException;
+    public void editarDespesa(String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao, LocalDate data) throws DespesaNaoExisteException;
 
     /**
      * Remove uma despesa do sistema com base no objeto de despesa fornecido.

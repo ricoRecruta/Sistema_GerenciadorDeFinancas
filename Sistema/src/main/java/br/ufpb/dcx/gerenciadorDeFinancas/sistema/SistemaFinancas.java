@@ -2,6 +2,8 @@ package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
 
 import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.*;
+
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -43,24 +45,25 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
     @Override
     public void cadastrarDespesa(Despesa despesa) throws DespesaJaCadastradaException {
-        for (Despesa a: this.despesas.values()){
-            if (despesas.containsKey(despesa.getIdDespesa()) && a.getData() == despesa.getData()){
-                throw new DespesaJaCadastradaException("Compra com o ID " + despesa.getIdDespesa() + "já cadastrada no sistema!");
-            }else {
-                this.despesas.put(despesa.getIdDespesa(), despesa);
+        for (Despesa a: this.despesas.values()) {
+            if (a.getData().equals(despesa.getData())) {
+                throw new DespesaJaCadastradaException("Compra com o ID " + despesa.getIdDespesa() + ", e Data " + despesa.getData() + " já cadastrada no sistema!");
             }
         }
+        this.despesas.put(despesa.getIdDespesa(), despesa);
+
+
     }
 
 
     @Override
-    public void editarDespesa(String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao) throws DespesaNaoExisteException {
+    public void editarDespesa(String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao, LocalDate data) throws DespesaNaoExisteException {
         if (despesas.containsKey(idDespesa)) {
             Despesa compraExistente = despesas.get(idDespesa);
             compraExistente.setCategoriaDespesa(novaCategoria);
             compraExistente.setValorDespesa(novoValor);
             compraExistente.setDescricao(novaDescricao);
-
+            compraExistente.setData(data);
             despesas.put(idDespesa, compraExistente);
         } else {
             throw new DespesaNaoExisteException("Compra com o ID " + idDespesa + " não encontrada no sistema.");
