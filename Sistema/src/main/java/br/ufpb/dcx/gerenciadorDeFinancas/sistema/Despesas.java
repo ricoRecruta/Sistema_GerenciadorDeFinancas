@@ -1,7 +1,5 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
-import br.ufpb.dcx.gerenciadorDeFinancas.sistema.categoriaCompra;
-
 import java.text.SimpleDateFormat;
 
 public class Despesas {
@@ -9,32 +7,32 @@ public class Despesas {
     private CategoriaCompra categoriaCompra;
     private double valorCompra;
     private String descricao;
-
-    public Compra(categoriaCompra categoriaCompra, double valorCompra, String descricao){
-        this.idCompra = new Chave();
+//teste
+    public Despesas(CategoriaCompra categoriaCompra, double valorCompra, String descricao){
+        this.idReceita = new Chave();
         this.categoriaCompra = categoriaCompra;
         this.valorCompra = valorCompra;
         this.descricao = descricao;
         SimpleDateFormat data = new SimpleDateFormat("dd/MM/yy");
     }
 
-    /*public Compra(){
-        this(categoriaCompra.OUTROS, 0.0, "");
-    }*/
+    public Despesas(){
+        this(CategoriaCompra.OUTROS, 0.0, "");
+    }
 
     public Chave getIdCompra() {
-        return idCompra;
+        return idReceita;
     }
 
     public void setIdCompra(Chave idCompra) {
-        this.idCompra = idCompra;
+        this.idReceita = idCompra;
     }
 
-    public categoriaCompra getCategoriaCompra() {
+    public CategoriaCompra getCategoriaCompra() {
         return categoriaCompra;
     }
 
-    public void setCategoriaCompra(categoriaCompra categoriaCompra) {
+    public void setCategoriaCompra(CategoriaCompra categoriaCompra) {
         this.categoriaCompra = categoriaCompra;
     }
 
@@ -58,6 +56,6 @@ public class Despesas {
         return "[Compra: "+this.categoriaCompra+
                 "\nValor: "+this.valorCompra+
                 "\nDescrição: "+this.descricao+
-                "\nID: "+this.idCompra+"]";
+                "\nID: "+this.idReceita +"]";
     }
 }

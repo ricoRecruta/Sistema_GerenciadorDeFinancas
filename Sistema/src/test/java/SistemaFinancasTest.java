@@ -1,8 +1,7 @@
 
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.Despesas;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
-import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaGerenciadorFinancas;
-import br.ufpb.dcx.gerenciadorDeFinancas.sistema.categoriaCompra;
+import br.ufpb.dcx.gerenciadorDeFinancas.sistema.CategoriaCompra;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
