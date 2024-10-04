@@ -87,14 +87,14 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
     @Override
     public Collection<Despesa> pesquisarPorCategoria(CategoriaDespesa categoria) {
-        Collection<Despesa> comprasPorCategoria = new ArrayList<>();
+        Collection<Despesa> despesaPorCategoria = new ArrayList<>();
 
         for (Despesa c : this.despesas.values()) {
             if (c.getCategoriaDespesa() == categoria) {
-                comprasPorCategoria.add(c);
+                despesaPorCategoria.add(c);
             }
         }
-        return comprasPorCategoria;
+        return despesaPorCategoria;
     }
 
     /*@Override
