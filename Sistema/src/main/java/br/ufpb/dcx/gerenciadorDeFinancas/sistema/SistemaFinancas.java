@@ -123,14 +123,14 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     public String verificarSaldoDoMes(LocalDate data, int mes) { //Para ver se a pessoa ficou no débito
         double totalReceitas = exibirReceitaTotalDoMes(data.withMonth(mes));
 
-        double totalDespesas = exibirReceitaTotalDoMes(data.withMonth(mes));
+        double totalDespesas = exibirTotalGastoDoMes(data.withMonth(mes));
 
         double saldo = totalReceitas - totalDespesas;
 
-        if(saldo < 0){
-            return "Seu Saldo deste mês: " + mes + " foi negativo.\n" + "Saldo = " + saldo;
+        if (saldo < 0) {
+            return "Atenção! Seu saldo do mês " + mes + " foi negativo.\nSaldo = " +  saldo;
         }
-        return "Seu Saldo do mês de " + mes + " foi positivo.\n" + "Saldo = " + saldo;
+        return "Parabéns! Seu saldo do mês " + mes + " foi positivo.\n" + "Saldo = " + saldo;
     }
 
     public void salvarDados(){
