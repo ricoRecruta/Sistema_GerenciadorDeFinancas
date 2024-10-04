@@ -17,6 +17,7 @@ public class FinancasGUI extends JFrame {
     public FinancasGUI() {
         sistema = new SistemaFinancas();
 
+
         setTitle("Sistema Gerenciador de Finanças");
         setSize(800, 600);
         setLocation(400, 100);

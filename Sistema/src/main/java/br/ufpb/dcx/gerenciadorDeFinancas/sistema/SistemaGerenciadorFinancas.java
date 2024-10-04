@@ -79,4 +79,10 @@ public interface SistemaGerenciadorFinancas {
      */
     public String verificarSaldoDoMes(LocalDate data, int mes);
 
+    public void recuperarDados();
+
+    public void salvarDados();
+
+
+
 }
