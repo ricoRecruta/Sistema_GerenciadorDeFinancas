@@ -1,7 +1,6 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.gui;
 
 
-import br.ufpb.dcx.gerenciadorDeFinancas.controller.*;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaGerenciadorFinancas;
 
@@ -12,7 +11,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 public class FinancasGUI extends JFrame {
-
+    JLabel linha1, linha2, linha3;
+    ImageIcon capaSmartFinance = new ImageIcon("./img/smartfinance.png");
     SistemaGerenciadorFinancas sistema;
     public FinancasGUI() {
         sistema = new SistemaFinancas();
@@ -25,12 +25,29 @@ public class FinancasGUI extends JFrame {
 
         getContentPane().setLayout(new BorderLayout());
 
-        JLabel linha1 = new JLabel("SMART FINANCE", JLabel.CENTER);
+        linha1 = new JLabel("SMART FINANCE", JLabel.CENTER);
         linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
         getContentPane().add(linha1, BorderLayout.NORTH);
 
+        linha2 = new JLabel(capaSmartFinance, JLabel.CENTER);
+        getContentPane().add(linha2, BorderLayout.CENTER);
+
+        JPanel painelBotoes = new JPanel();
+        painelBotoes.setLayout(new FlowLayout());
+
+        JButton btnDespesas = new JButton("Gerenciar minhas despesas");
+        JButton btnReceita = new JButton("Gerenciar minha receita");
+        JButton btnRelatorios = new JButton("Exibir relatórios");
+
+        painelBotoes.add(btnReceita);
+        painelBotoes.add(btnDespesas);
+        painelBotoes.add(btnRelatorios);
+
+        getContentPane().add(painelBotoes, BorderLayout.SOUTH);
 
         JMenuBar menuBar = new JMenuBar();
+        menuBar.setPreferredSize(new Dimension(1000, 40));
+
 
         // Menu "Gerenciar Despesas"
         JMenu menuDespesas = new JMenu("DESPESAS");
