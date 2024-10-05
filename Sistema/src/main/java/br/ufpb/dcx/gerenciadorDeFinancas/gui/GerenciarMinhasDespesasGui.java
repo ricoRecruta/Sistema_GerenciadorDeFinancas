@@ -33,7 +33,7 @@ public class GerenciarMinhasDespesasGui extends JFrame {
         iconeRemover = new ImageIcon(iconeRemover.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
         iconeEditar = new ImageIcon(iconeEditar.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
 
-        setTitle("Sistema Gerenciador de Financias");
+        setTitle("Sistema Gerenciador de Finanças");
         setSize(800, 600);
         setLocation(400, 100);
         setResizable(true);
@@ -60,14 +60,14 @@ public class GerenciarMinhasDespesasGui extends JFrame {
 
 
         //Botão 2: Editar
-        JButton botaoEditarDespesa = new JButton("Editar Despesa", iconeEditar);
+        JButton botaoEditarDespesa = new JButton("Editar despesa", iconeEditar);
         botaoEditarDespesa.setPreferredSize(new Dimension(200, 50));
         //TODO: verificar a implementação da lógica pesquisar
         botaoEditarDespesa.addActionListener(new DespesaSearchController(this.sistema, this));
 
 
         //Botão 3: Remover
-        JButton botaoRemoverDespesa = new JButton("Remover Despesa", iconeRemover);
+        JButton botaoRemoverDespesa = new JButton("Remover despesa", iconeRemover);
         botaoRemoverDespesa.setPreferredSize(new Dimension(200, 50));
         //TODO: verificar a instancia do sistema e a lógica
         botaoRemoverDespesa.addActionListener(new DespesaRemoveController(this.sistema, this));
