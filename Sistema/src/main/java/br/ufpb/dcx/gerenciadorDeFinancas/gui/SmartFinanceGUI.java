@@ -67,7 +67,7 @@ public class SmartFinanceGUI extends JFrame {
         });
 
         btnReceita.addActionListener(e -> {
-             MinhasReceitasGUI receitasGUI = new MinhasReceitasGUI();
+             GerenciarMinhasReceitasGUI receitasGUI = new GerenciarMinhasReceitasGUI();
              dispose();
              receitasGUI.setVisible(true);
         });
