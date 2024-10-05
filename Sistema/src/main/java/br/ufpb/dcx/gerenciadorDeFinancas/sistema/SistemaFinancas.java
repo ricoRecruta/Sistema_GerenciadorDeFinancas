@@ -20,36 +20,41 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     }
 
 
+    //MÉTODOS DE RECEITAS
     @Override
     public void cadastrarReceita(Receita receita) {
         this.receitas.put(receita.getIdReceita(), receita);
     }
 
-
     @Override
-    public void editarValorReceita(String idReceita, double novaReceita)throws ReceitaNaoExistenteException {
+    public void editarValorReceita(String idReceita, double novaReceita) throws ReceitaNaoExisteException {
         if (this.receitas.containsKey(idReceita)) {
             Receita receita = this.receitas.get(idReceita);
             receita.setValor(novaReceita);
-        }else {
-            throw new ReceitaNaoExistenteException("Receita com ID: " + idReceita + " não existente!");
+        } else {
+            throw new ReceitaNaoExisteException("Receita com ID: " + idReceita + " não existente!");
+        }
+    }
+
+    public Receita pesquisarReceitaPeloId(String id) throws ReceitaNaoExisteException {
+        if (!this.receitas.containsKey(id)) {
+            throw new ReceitaNaoExisteException("Não existe receita com o id passado");
+        } else {
+            return this.receitas.get(id);
         }
     }
 
 
-
+    //MÉTODOS DE DESPESAS
     @Override
     public void cadastrarDespesa(Despesa despesa) throws DespesaJaCadastradaException {
-        for (Despesa a: this.despesas.values()) {
-            if (a.equals(despesa)){
+        for (Despesa a : this.despesas.values()) {
+            if (a.equals(despesa)) {
                 throw new DespesaJaCadastradaException("Compra com o ID " + despesa.getIdDespesa() + ", e Data " + despesa.getData() + " já cadastrada no sistema!");
             }
         }
         this.despesas.put(despesa.getIdDespesa(), despesa);
-
-
     }
-
 
     @Override
     public void editarDespesa(String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao, LocalDate data) throws DespesaNaoExisteException {
@@ -65,24 +70,15 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         }
     }
 
-
     @Override
     public void removerDespesa(Despesa despesa) throws DespesaNaoExisteException {
         String id = despesa.getIdDespesa();
 
-        if(!despesas.containsKey(id)){
-            throw new DespesaNaoExisteException("A despesa com id: "+ id + " não existe");
+        if (!despesas.containsKey(id)) {
+            throw new DespesaNaoExisteException("A despesa com id: " + id + " não existe");
         }
         despesas.remove(id);
 
-    }
-
-    public Map<String, Despesa> getDespesas() {
-        return despesas;
-    }
-
-    public Map<String, Receita> getReceitas() {
-        return this.receitas;
     }
 
     @Override
@@ -97,6 +93,16 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         return despesaPorCategoria;
     }
 
+    public Map<String, Despesa> getDespesas() {
+        return despesas;
+    }
+
+    public Map<String, Receita> getReceitas() {
+        return this.receitas;
+    }
+
+
+    //MÉTODOS DE EXIBIÇÃO
     /*@Override
     public double exibirTotalGasto() {
         double valorTotal = 0;
@@ -105,6 +111,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         }
         return valorTotal;
     }*/
+
     @Override
     public double exibirTotalGasto() {
         return this.despesas.values().stream().mapToDouble(Despesa::getValorDespesa).sum();
@@ -112,11 +119,12 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
     @Override
     public double exibirReceitaTotalDoMes(LocalDate data) {
-        return this.receitas.values().stream().filter(receitas -> receitas.getData().getMonth().equals(data.getMonth())).mapToDouble(Receita:: getValor).sum();
+        return this.receitas.values().stream().filter(receitas -> receitas.getData().getMonth().equals(data.getMonth())).mapToDouble(Receita::getValor).sum();
     }
+
     @Override
     public double exibirTotalGastoDoMes(LocalDate data) {
-        return this.despesas.values().stream().filter(despesas -> despesas.getData().getMonth().equals(data.getMonth())).mapToDouble(Despesa:: getValorDespesa).sum();
+        return this.despesas.values().stream().filter(despesas -> despesas.getData().getMonth().equals(data.getMonth())).mapToDouble(Despesa::getValorDespesa).sum();
     }
 
     @Override
@@ -128,38 +136,32 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         double saldo = totalReceitas - totalDespesas;
 
         if (saldo < 0) {
-            return "Atenção! Seu saldo do mês " + mes + " foi negativo.\nSaldo = " +  saldo;
+            return "Atenção! Seu saldo do mês " + mes + " foi negativo.\nSaldo = " + saldo;
         }
         return "Parabéns! Seu saldo do mês " + mes + " foi positivo.\n" + "Saldo = " + saldo;
     }
 
+
+    //Métodos de recuperação e gravação de dados
     @Override
-    public void salvarDados(){
-        try{
+    public void salvarDados() {
+        try {
             gravador.gravarDespesas(this.despesas);
             gravador.gravarReceitas(this.receitas);
-        } catch(IOException e){
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
 
     @Override
-    public void recuperarDados(){
-        try{
+    public void recuperarDados() {
+        try {
             this.despesas = gravador.recuperarDadosDasDespesas();
             this.receitas = gravador.recuperarDadosDasReceitas();
-        } catch (IOException e){
+        } catch (IOException e) {
             this.despesas = new HashMap<>();
             this.receitas = new HashMap<>();
             System.err.println(e.getMessage());
-        }
-    }
-
-    public Receita pesquisarReceitaPeloId(String id) throws ReceitaNaoExistenteException{
-        if(!this.receitas.containsKey(id)){
-            throw new ReceitaNaoExistenteException("Não existe receita com o id passado");
-        } else {
-            return this.receitas.get(id);
         }
     }
 }
