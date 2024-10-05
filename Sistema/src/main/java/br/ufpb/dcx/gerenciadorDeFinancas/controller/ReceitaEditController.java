@@ -1,6 +1,6 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.controller;
 
-import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.ReceitaNaoExistenteException;
+import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.ReceitaNaoExisteException;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.Receita;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaGerenciadorFinancas;
 
@@ -10,19 +10,20 @@ import java.awt.event.ActionListener;
 
 public class ReceitaEditController implements ActionListener {
     private SistemaGerenciadorFinancas sistema;
+    private JFrame janela;
     private Receita receita;
-    public ReceitaEditController(SistemaGerenciadorFinancas sistema, Receita receita){
+    public ReceitaEditController(SistemaGerenciadorFinancas sistema, Receita receita, JFrame janela){
         this.sistema = sistema;
         this.receita = receita;
+        this.janela = janela;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        //TODO: falta passar a janela ainda
-        Double valorAMudar = Double.parseDouble(JOptionPane.showInputDialog(null,"Digite o valor que deseja colocar"));
+        double valorEditado = Double.parseDouble(JOptionPane.showInputDialog(janela,"Digite o valor que deseja colocar"));
         try {
-            sistema.editarValorReceita(receita.getIdReceita(), valorAMudar);
-        }catch(ReceitaNaoExistenteException ex){
-            System.err.println(ex.getMessage());
+            sistema.editarValorReceita(receita.getIdReceita(), valorEditado);
+        }catch(ReceitaNaoExisteException ex){
+            JOptionPane.showMessageDialog(janela, ex.getMessage());
         }
 
     }

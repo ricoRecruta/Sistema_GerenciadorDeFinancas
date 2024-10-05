@@ -1,6 +1,6 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.controller;
 
-import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.ReceitaNaoExistenteException;
+import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.ReceitaNaoExisteException;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.Receita;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaGerenciadorFinancas;
 
@@ -11,20 +11,22 @@ import java.awt.event.ActionListener;
 public class ReceitaSearchController implements ActionListener {
     private SistemaGerenciadorFinancas sistema;
     private String id;
-    public ReceitaSearchController(SistemaGerenciadorFinancas sistema,  String id){
+    private JFrame janela;
+
+    public ReceitaSearchController(SistemaGerenciadorFinancas sistema,  String id, JFrame janela){
         this.sistema = sistema;
         this.id = id;
+        this.janela = janela;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             Receita receita = sistema.pesquisarReceitaPeloId(this.id);
-            //TODO: passar a janela ainda.
-            JOptionPane.showMessageDialog(null,receita);
+            JOptionPane.showMessageDialog(janela,receita);
 
-        }catch(ReceitaNaoExistenteException ex){
-            System.err.println(ex.getMessage());
+        }catch(ReceitaNaoExisteException ex){
+            JOptionPane.showMessageDialog(janela, ex.getMessage());
         }
     }
 }
