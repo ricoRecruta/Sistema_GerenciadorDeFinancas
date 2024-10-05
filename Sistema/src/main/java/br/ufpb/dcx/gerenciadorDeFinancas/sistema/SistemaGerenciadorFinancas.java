@@ -83,6 +83,8 @@ public interface SistemaGerenciadorFinancas {
 
     public void salvarDados();
 
+    public Receita pesquisarReceitaPeloId(String id)throws ReceitaNaoExistenteException;
+
 
 
 }
