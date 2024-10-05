@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Despesa {
+public class Despesa implements Serializable{
     private String idDespesa;
     private CategoriaDespesa categoriaDespesa;
     private double valorDespesa;

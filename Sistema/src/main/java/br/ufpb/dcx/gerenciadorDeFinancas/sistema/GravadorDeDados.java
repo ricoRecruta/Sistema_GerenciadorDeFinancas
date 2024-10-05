@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class GravadorDeDados {
     public static final String ARQUIVO_DESPESAS = "arquivo_despesas.dat";
-    public static final String ARQUIVOS_RECEITAS = "lista_receitas.dat";
+    public static final String ARQUIVOS_RECEITAS = "arquivo_receitas.dat";
 
 
     public HashMap<String, Despesa> recuperarDadosDasDespesas() throws IOException{
@@ -32,7 +32,7 @@ public class GravadorDeDados {
     }
 
     public void gravarReceitas(Map<String, Receita> receitas) throws IOException{
-        try(ObjectOutputStream in = new ObjectOutputStream(new FileOutputStream(ARQUIVO_DESPESAS))){
+        try(ObjectOutputStream in = new ObjectOutputStream(new FileOutputStream(ARQUIVOS_RECEITAS))){
             in.writeObject(receitas);
         }
     }

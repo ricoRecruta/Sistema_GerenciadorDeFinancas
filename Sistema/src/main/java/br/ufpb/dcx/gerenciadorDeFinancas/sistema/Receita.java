@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
-public class Receita {
+public class Receita implements Serializable {
 
     private String idReceita;
     private double valor;
