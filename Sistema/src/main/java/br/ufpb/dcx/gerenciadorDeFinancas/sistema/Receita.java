@@ -40,8 +40,9 @@ public class Receita implements Serializable {
     }
 
     public String toString(){
-        return "Receita: "+this.valor+
-                "\nID: "+this.idReceita;
+        return "Receita: "+this.valor+"R$"+
+                "\n ID: "+this.idReceita+
+                "\n Data: "+this.data;
     }
 
 }

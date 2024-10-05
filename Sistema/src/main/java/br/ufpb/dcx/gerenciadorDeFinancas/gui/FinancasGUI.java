@@ -105,6 +105,9 @@ public class FinancasGUI extends JFrame {
         menuReceitas.add(itemSearchReceita);
         menuReceitas.add(itemViewReceita);
 
+        ReceitaAddController teste = new ReceitaAddController(sistema, this);
+        itemAddReceita.addActionListener(teste);
+
         //Menu "Exibir gastos"
         JMenu menuExibirGastos = new JMenu("EXIBIR GASTOS");
         JMenuItem itemExibirTotalGasto = new JMenuItem("Exibir Gasto Mensal");
