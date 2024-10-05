@@ -5,15 +5,19 @@ import br.ufpb.dcx.gerenciadorDeFinancas.controller.*;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaGerenciadorFinancas;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class FinancasGUI extends JFrame {
     JLabel linha1, linha2, linha3;
-    ImageIcon capaSmartFinance = new ImageIcon("./img/smartfinance.png");
+    ImageIcon capaSmartFinance;
     private  static SistemaGerenciadorFinancas sistema;
 
 
@@ -25,7 +29,7 @@ public class FinancasGUI extends JFrame {
         setTitle("Sistema Gerenciador de Finanças");
         setSize(800, 600);
         setLocation(400, 100);
-        setResizable(false);
+        setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         getContentPane().setLayout(new BorderLayout());
@@ -34,8 +38,25 @@ public class FinancasGUI extends JFrame {
         linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
         getContentPane().add(linha1, BorderLayout.NORTH);
 
-        linha2 = new JLabel(capaSmartFinance, JLabel.CENTER);
-        getContentPane().add(linha2, BorderLayout.CENTER);
+        // Verificar carregamento da imagem
+        String imagePath = "./Sistema/src/imgs/java.jpg";
+        try {
+            BufferedImage img = ImageIO.read(new File(imagePath));
+            capaSmartFinance = new ImageIcon(img);
+            linha2 = new JLabel(capaSmartFinance, JLabel.CENTER);
+        } catch (IOException e) {
+            System.err.println("Erro ao carregar a imagem: " + e.getMessage());
+            linha2 = new JLabel("Erro ao carregar a imagem", JLabel.CENTER);
+        }
+
+        //Adicionar a imagem ao painel central
+        JPanel painelCentral = new JPanel(new BorderLayout());
+        painelCentral.setBackground(Color.LIGHT_GRAY);
+        painelCentral.add(linha2, BorderLayout.CENTER);
+        getContentPane().add(painelCentral, BorderLayout.CENTER);
+
+
+
 
         JPanel painelBotoes = new JPanel();
         painelBotoes.setLayout(new FlowLayout());
@@ -64,6 +85,12 @@ public class FinancasGUI extends JFrame {
         menuDespesas.add(itemEditDespesa);
         menuDespesas.add(itemRemoveDespesa);
         menuDespesas.add(itemSearchDespesa);
+
+        //Controllers
+        DespesaAddController addcontroller = new DespesaAddController(sistema, this);
+        itemAddDespesa.addActionListener(addcontroller);
+        DespesaEditController editController = new DespesaEditController(sistema,this);
+        itemEditDespesa.addActionListener(editController);
 
         // Menu "Gerenciar Receitas"
         JMenu menuReceitas = new JMenu("RECEITAS");
@@ -94,18 +121,13 @@ public class FinancasGUI extends JFrame {
 
         setJMenuBar(menuBar);
 
-
-        JPanel painelCentral = new JPanel();
+        //Esse painel central estava ficando por cima da Imagem. Coloquei a imagem por cima dele nas linhas 41 à 56
+        /*JPanel painelCentral = new JPanel();
         painelCentral.setBackground(Color.LIGHT_GRAY);
-        getContentPane().add(painelCentral, BorderLayout.CENTER);
+        getContentPane().add(painelCentral, BorderLayout.CENTER);*/
 
-        itemAddDespesa.addActionListener(new DespesaAddController(sistema,this));
-        itemRemoveDespesa.addActionListener(new DespesaRemoveController(sistema));
-        //itemSearchDespesa.addActionListener(new DespesaSearchController(sistema));
 
-        /*itemAddReceita.addActionListener(new ReceitaAddController(sistema));
-        itemRemoveReceita.addActionListener(new ReceitaRemoveController(sistema));
-        itemSearchReceita.addActionListener(new ReceitaSearchController(sistema));*/
+
     }
 
     public static void main(String[] args) {
