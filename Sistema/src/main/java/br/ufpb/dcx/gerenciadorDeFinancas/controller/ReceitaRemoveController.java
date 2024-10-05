@@ -25,12 +25,12 @@ public class ReceitaRemoveController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try {
             String id = JOptionPane.showInputDialog(janela, "Informe o ID para remover:");
-            String valorStr = JOptionPane.showInputDialog(janela, "Digite o valor da despesa à remover: ");
+            String valorStr = JOptionPane.showInputDialog(janela, "Digite o valor da receita à remover: ");
             double valor = Double.parseDouble(valorStr);
-            String dataStr = JOptionPane.showInputDialog(janela, "Informe a data da Despesa para remover: Modelo = yyyy-MM-dd ");
+            String dataStr = JOptionPane.showInputDialog(janela, "Informe a data da receita para remover: Modelo = yyyy-MM-dd ");
             LocalDate data = LocalDate.parse(dataStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             sistema.removerReceita(new Receita(id, valor, data));
-            JOptionPane.showMessageDialog(janela, "Despesa removida com sucesso!");
+            JOptionPane.showMessageDialog(janela, "Receita removida com sucesso!");
         } catch (ReceitaNaoExisteException ex) {
             JOptionPane.showMessageDialog(janela, ex.getMessage());
         }catch (IllegalArgumentException ex) {
