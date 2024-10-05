@@ -13,7 +13,7 @@ public class ReceitaSearchController implements ActionListener {
     private String id;
     private JFrame janela;
 
-    public ReceitaSearchController(SistemaGerenciadorFinancas sistema,  String id, JFrame janela){
+    public ReceitaSearchController(SistemaGerenciadorFinancas sistema, JFrame janela){
         this.sistema = sistema;
         this.id = id;
         this.janela = janela;
@@ -24,7 +24,6 @@ public class ReceitaSearchController implements ActionListener {
         try {
             Receita receita = sistema.pesquisarReceitaPeloId(this.id);
             JOptionPane.showMessageDialog(janela,receita);
-
         }catch(ReceitaNaoExisteException ex){
             JOptionPane.showMessageDialog(janela, ex.getMessage());
         }
