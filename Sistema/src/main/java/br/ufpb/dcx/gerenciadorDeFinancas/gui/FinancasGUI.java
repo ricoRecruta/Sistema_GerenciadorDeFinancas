@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class FinancasGUI extends JFrame {
-    JLabel linha1, linha2, linha3;
+    JLabel linha1, linha2;
     ImageIcon capaSmartFinance;
     private  static SistemaGerenciadorFinancas sistema;
 
@@ -34,12 +34,11 @@ public class FinancasGUI extends JFrame {
 
         getContentPane().setLayout(new BorderLayout());
 
-        linha1 = new JLabel("SMART FINANCE", JLabel.CENTER);
+        linha1 = new JLabel("GERENCIADOR DE FINANÇAS", JLabel.CENTER);
         linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
         getContentPane().add(linha1, BorderLayout.NORTH);
 
-        // Verificar carregamento da imagem
-        String imagePath = "./Sistema/src/imgs/java.jpg";
+        String imagePath = "./Sistema/src/imgs/smartfinancephoto.png";
         try {
             BufferedImage img = ImageIO.read(new File(imagePath));
             capaSmartFinance = new ImageIcon(img);
@@ -49,14 +48,10 @@ public class FinancasGUI extends JFrame {
             linha2 = new JLabel("Erro ao carregar a imagem", JLabel.CENTER);
         }
 
-        //Adicionar a imagem ao painel central
         JPanel painelCentral = new JPanel(new BorderLayout());
         painelCentral.setBackground(Color.LIGHT_GRAY);
         painelCentral.add(linha2, BorderLayout.CENTER);
         getContentPane().add(painelCentral, BorderLayout.CENTER);
-
-
-
 
         JPanel painelBotoes = new JPanel();
         painelBotoes.setLayout(new FlowLayout());
@@ -118,15 +113,12 @@ public class FinancasGUI extends JFrame {
         menuBar.add(menuReceitas);
         menuBar.add(menuExibirGastos);
 
-
         setJMenuBar(menuBar);
 
         //Esse painel central estava ficando por cima da Imagem. Coloquei a imagem por cima dele nas linhas 41 à 56
         /*JPanel painelCentral = new JPanel();
         painelCentral.setBackground(Color.LIGHT_GRAY);
         getContentPane().add(painelCentral, BorderLayout.CENTER);*/
-
-
 
     }
 
