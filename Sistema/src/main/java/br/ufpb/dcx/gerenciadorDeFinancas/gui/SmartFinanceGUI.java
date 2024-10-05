@@ -38,7 +38,7 @@ public class SmartFinanceGUI extends JFrame {
         linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
         getContentPane().add(linha1, BorderLayout.NORTH);
 
-        String imagePath = "./Sistema/src/imgs/smartfinancephoto.png";
+        String imagePath = "./Sistema/src/imgs/smartfinance.png";
         try {
             BufferedImage img = ImageIO.read(new File(imagePath));
             capaSmartFinance = new ImageIcon(img);
