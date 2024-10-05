@@ -40,7 +40,7 @@ public class GerenciarMinhasDespesasGui extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
 
-        linha1 = new JLabel("Receitas Pessoais", JLabel.CENTER);
+        linha1 = new JLabel("CONTROLE DE GASTOS", JLabel.CENTER);
         linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
         getContentPane().add(linha1, BorderLayout.NORTH);
 
@@ -102,7 +102,13 @@ public class GerenciarMinhasDespesasGui extends JFrame {
         setJMenuBar(menuBar);
 
         itemPaginaInicial.addActionListener(new PaginaInicialController(this));
+
         //TODO implementar o restante das jenalas
+        itemExibirRelatorio.addActionListener(e ->{
+            ExibeRelatorioGUI paginaRelatorio = new ExibeRelatorioGUI();
+            dispose();
+            paginaRelatorio.setVisible(true);
+        });
 
     }
 
