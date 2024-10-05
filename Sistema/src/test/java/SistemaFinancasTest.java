@@ -1,11 +1,10 @@
 
 import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.DespesaJaCadastradaException;
 import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.DespesaNaoExisteException;
-import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.ReceitaNaoExistenteException;
+import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.ReceitaNaoExisteException;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.*;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,7 +64,7 @@ public class SistemaFinancasTest {
 
         try {
             sistema.editarValorReceita(receitaTeste.getIdReceita(), 2500);
-        }catch (ReceitaNaoExistenteException e){
+        }catch (ReceitaNaoExisteException e){
             System.out.println(e.getMessage());
         }
         assertTrue(sistema.getReceitas().get(receitaTeste.getIdReceita()).getValor() == 2500);

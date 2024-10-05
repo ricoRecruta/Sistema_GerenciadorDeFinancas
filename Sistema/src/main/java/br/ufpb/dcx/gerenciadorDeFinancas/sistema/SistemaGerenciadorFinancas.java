@@ -19,7 +19,7 @@ public interface SistemaGerenciadorFinancas {
      *
      * @param novoReceita O novo valor do salário a ser atualizado.
      */
-    public void editarValorReceita(String id, double novoReceita) throws ReceitaNaoExistenteException;
+    public void editarValorReceita(String id, double novoReceita) throws ReceitaNaoExisteException;
 
     /**
      * Cadastra uma nova despesa no sistema.
@@ -83,7 +83,7 @@ public interface SistemaGerenciadorFinancas {
 
     public void salvarDados();
 
-    public Receita pesquisarReceitaPeloId(String id)throws ReceitaNaoExistenteException;
+    public Receita pesquisarReceitaPeloId(String id)throws ReceitaNaoExisteException;
 
 
 
