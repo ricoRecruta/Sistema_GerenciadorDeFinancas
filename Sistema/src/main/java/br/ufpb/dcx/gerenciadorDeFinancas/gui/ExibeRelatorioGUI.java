@@ -90,13 +90,17 @@ public class ExibeRelatorioGUI extends JFrame {
         setJMenuBar(menuBar);
 
         itemPaginaInicial.addActionListener(new PaginaInicialController(this));
-        //TODO Implementar outras telas do sistema
+
         itemDespesas.addActionListener( e -> {
             GerenciarMinhasDespesasGui paginaDespesa = new GerenciarMinhasDespesasGui();
             dispose();
             paginaDespesa.setVisible(true);
         });
-//        itemReceitas.addActionListener(new (this));
+       itemReceitas.addActionListener(e -> {
+           JFrame janela = new MinhasReceitasGUI();
+           dispose();
+           janela.setVisible(true);
+       });
     }
 
     public static void main(String[] args) {

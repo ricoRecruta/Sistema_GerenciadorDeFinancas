@@ -101,9 +101,19 @@ public class GerenciarMinhasDespesasGui extends JFrame {
         menuBar.add(menuDeDespesas);
         setJMenuBar(menuBar);
 
+        //Lógica para a Pagina Inicial do sistema
         itemPaginaInicial.addActionListener(new PaginaInicialController(this));
 
         //TODO implementar o restante das jenalas
+
+        //Lógica para ir para MinhasReceitasGUI
+        itemReceita.addActionListener(e -> {
+            JFrame janela = new MinhasReceitasGUI();
+            dispose();
+            janela.setVisible(true);
+        });
+
+        //Lõgica para ExibirRelatorioGUI
         itemExibirRelatorio.addActionListener(e ->{
             ExibeRelatorioGUI paginaRelatorio = new ExibeRelatorioGUI();
             dispose();

@@ -68,10 +68,10 @@ public class FinancasGUI extends JFrame {
 
 
 
-//        btnReceita.addActionListener(e -> {
-//            ExibeRelatorioGUI relatoriosGUI = new ExibeRelatorioGUI();
-//            relatoriosGUI.setVisible(true);
-//        });
+        btnReceita.addActionListener(e -> {
+             MinhasReceitasGUI receitasGUI = new MinhasReceitasGUI();
+             receitasGUI.setVisible(true);
+        });
 
         btnRelatorios.addActionListener(e -> {
             ExibeRelatorioGUI relatoriosGUI = new ExibeRelatorioGUI();

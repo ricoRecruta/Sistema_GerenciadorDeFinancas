@@ -1,12 +1,14 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.gui;
 
-import br.ufpb.dcx.gerenciadorDeFinancas.controller.ReceitaAddController;
-import br.ufpb.dcx.gerenciadorDeFinancas.controller.ReceitaRemoveController;
+import br.ufpb.dcx.gerenciadorDeFinancas.controller.*;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaGerenciadorFinancas;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class MinhasReceitasGUI extends JFrame {
     JLabel linha1, linha2;
@@ -38,6 +40,10 @@ public class MinhasReceitasGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new FlowLayout());
 
+        linha1 = new JLabel("GESTÃO DE FINANÇAS", JLabel.CENTER);
+        linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
+        getContentPane().add(linha1, BorderLayout.NORTH);
+
         //TODO: falta adcionar a imagem
 
         //Botões
@@ -45,28 +51,94 @@ public class MinhasReceitasGUI extends JFrame {
          painelDeBotoes.setLayout(new FlowLayout());
 
          //Botão 1: Cadastrar
-        JButton botaoCadastrarReceita = new JButton("Cadastrar receiat", iconeCadastrtar);
+        JButton botaoCadastrarReceita = new JButton("Cadastrar receita", iconeCadastrtar);
         //adcionando a ação do botão
         botaoCadastrarReceita.addActionListener( new ReceitaAddController(sistema,this));
 
-
+        //TODO: implementar a lógica dos botões 2 a 4
         //Botão 2: Pesquisar
         JButton botaoPesquisarReceita = new JButton("Pesquisar receita", iconePesquisar);
         //adcionando a ação do botão
-        botaoPesquisarReceita.addActionListener(new ReceitaAddController(sistema,this));
+        //botaoPesquisarReceita.addActionListener(new ReceitaSearchController(sistema));
 
         //Botão 3: Editar
         JButton botaoEditarReceita = new JButton(" Editar receita", iconeEditar);
         //adcionando a ação do botão
-        botaoEditarReceita.addActionListener(new ReceitaAddController(sistema,this));
+        //botaoEditarReceita.addActionListener(new ReceitaEditController(sistema));
 
         //Botão 4: Remover
         JButton botaoRemoverReceita = new JButton("Remover receita",iconeRemover);
         //adcionando a ação do botão
-        //TODO: falta implementar a lógica do ReceitaRemoveController
         //botaoRemoverReceita.addActionListener(new ReceitaRemoveController(sistema,this));
 
         //Botão 5: Exibir
+        JButton botaoExibirReceitas = new JButton("Exibir receitas", iconeExiberReceita);
+        //adcioando a ação do botão
+        botaoExibirReceitas.addActionListener(e -> {
+
+            String dataString = JOptionPane.showInputDialog(this, "Escreva a data a ser exibida o mês \n Data: dd/MM/yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data = LocalDate.parse(dataString, formatter);
+
+            JOptionPane.showMessageDialog(this,"A receita total desse mês foi\n" +
+                    sistema.exibirReceitaTotalDoMes(data)+" R$");
+
+        });
+
+        painelDeBotoes.add(botaoCadastrarReceita);
+        painelDeBotoes.add(botaoPesquisarReceita);
+        painelDeBotoes.add(botaoEditarReceita);
+        painelDeBotoes.add(botaoRemoverReceita);
+        painelDeBotoes.add(botaoExibirReceitas);
+        getContentPane().add(painelDeBotoes,BorderLayout.CENTER);
+
+
+        //Menu
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.setPreferredSize(new Dimension(1000,40));
+        JMenu menuReceitas = new JMenu("MENU");
+        JMenuItem itemPaginaInicial = new JMenuItem("Pagina Inicial");
+        JMenuItem itemDespesas = new JMenuItem("Gerência de Despesas");
+        JMenuItem itemExibirReceita = new JMenuItem("Exibir Relatório");
+        menuReceitas.add(itemPaginaInicial);
+        menuReceitas.add(itemDespesas);
+        menuReceitas.add(itemExibirReceita);
+
+        menuBar.add(menuReceitas);
+        setJMenuBar(menuBar);
+
+        //lógica para ir para a página inicial do sistema
+        itemPaginaInicial.addActionListener( new PaginaInicialController(this));
+
+        //Lógica para ir para a pagina de despesas.
+        itemDespesas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame janela = new GerenciarMinhasDespesasGui();
+                dispose();
+                janela.setVisible(true);
+            }
+        });
+
+        //lógica para ir para a página de exibirRelatório
+        itemExibirReceita.addActionListener(e -> {
+            JFrame janela = new ExibeRelatorioGUI();
+            dispose();
+            janela.setVisible(true);
+        });
+
+    }
+
+    public static void main(String[] args){
+        JFrame janelaPrincipal = new MinhasReceitasGUI();
+        janelaPrincipal.setVisible(true);
+        WindowListener fechadorDeJanelaPrincipal = new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                sistema.salvarDados();
+                System.exit(0);
+            }
+        };
+        janelaPrincipal.addWindowListener(fechadorDeJanelaPrincipal);
 
     }
 
