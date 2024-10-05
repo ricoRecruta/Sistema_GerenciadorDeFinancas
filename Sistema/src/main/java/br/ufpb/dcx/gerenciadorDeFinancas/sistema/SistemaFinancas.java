@@ -36,6 +36,14 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         }
     }
 
+    public void removerReceita(Receita receita) throws ReceitaNaoExisteException{
+        if(this.receitas.containsValue(receita)){
+            this.receitas.remove(receita);
+        } else {
+            throw new ReceitaNaoExisteException("Essa receita não existe ou não está cadastrada no sistema");
+        }
+    }
+
     public Receita pesquisarReceitaPeloId(String id) throws ReceitaNaoExisteException {
         if (!this.receitas.containsKey(id)) {
             throw new ReceitaNaoExisteException("Não existe receita com o id passado");
@@ -165,11 +173,4 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         }
     }
 
-    public void removerReceita(Receita receita) throws ReceitaNaoExisteException{
-        if(this.receitas.containsValue(receita)){
-            this.receitas.remove(receita);
-        } else {
-            throw new ReceitaNaoExisteException("Essa receita não existe ou não está cadastrada no sistema");
-        }
-    }
 }

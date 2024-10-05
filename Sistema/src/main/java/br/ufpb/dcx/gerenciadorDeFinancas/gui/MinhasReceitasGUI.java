@@ -19,7 +19,7 @@ public class MinhasReceitasGUI extends JFrame {
     ImageIcon iconeExiberReceita = new ImageIcon("./Sistema/src/imgs/gastomensalicon.png");
 
 
-    //TODO: mudar depois esse método estáatico
+    //TODO: mudar depois esse método estático
     private static SistemaGerenciadorFinancas sistema;
 
     public MinhasReceitasGUI(){

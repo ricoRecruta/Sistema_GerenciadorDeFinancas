@@ -1,6 +1,6 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.controller;
 
-import br.ufpb.dcx.gerenciadorDeFinancas.gui.FinancasGUI;
+import br.ufpb.dcx.gerenciadorDeFinancas.gui.SmartFinanceGUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +18,7 @@ public class PaginaInicialController implements ActionListener {
         frameAtual.dispose();
 
         // Abre a nova janela da classe FinancasGUI
-        JFrame financasGUI = new FinancasGUI();
+        JFrame financasGUI = new SmartFinanceGUI();
         financasGUI.setVisible(true);
     }
 }
