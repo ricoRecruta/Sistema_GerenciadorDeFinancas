@@ -1,9 +1,10 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Despesa{
+public class Despesa {
     private String idDespesa;
     private CategoriaDespesa categoriaDespesa;
     private double valorDespesa;

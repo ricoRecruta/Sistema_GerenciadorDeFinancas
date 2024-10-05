@@ -1,5 +1,6 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.sistema;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 

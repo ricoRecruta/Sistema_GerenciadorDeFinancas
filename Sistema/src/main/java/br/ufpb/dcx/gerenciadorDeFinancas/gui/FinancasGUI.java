@@ -1,6 +1,7 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.gui;
 
 
+import br.ufpb.dcx.gerenciadorDeFinancas.controller.*;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaGerenciadorFinancas;
 
@@ -13,9 +14,12 @@ import java.awt.event.WindowListener;
 public class FinancasGUI extends JFrame {
     JLabel linha1, linha2, linha3;
     ImageIcon capaSmartFinance = new ImageIcon("./img/smartfinance.png");
-    SistemaGerenciadorFinancas sistema;
+    private  static SistemaGerenciadorFinancas sistema;
+
+
     public FinancasGUI() {
         sistema = new SistemaFinancas();
+        sistema.recuperarDados();
 
 
         setTitle("Sistema Gerenciador de Finanças");
@@ -95,13 +99,13 @@ public class FinancasGUI extends JFrame {
         painelCentral.setBackground(Color.LIGHT_GRAY);
         getContentPane().add(painelCentral, BorderLayout.CENTER);
 
-//        itemAddDespesa.addActionListener(new DespesaAddController(sistema));
-//        itemRemoveDespesa.addActionListener(new DespesaRemoveController(sistema));
-//        itemSearchDespesa.addActionListener(new DespesaSearchController(sistema));
-//
-//        itemAddReceita.addActionListener(new ReceitaAddController(sistema));
-//        itemRemoveReceita.addActionListener(new ReceitaRemoveController(sistema));
-//        itemSearchReceita.addActionListener(new ReceitaSearchController(sistema));
+        itemAddDespesa.addActionListener(new DespesaAddController(sistema,this));
+        itemRemoveDespesa.addActionListener(new DespesaRemoveController(sistema));
+        //itemSearchDespesa.addActionListener(new DespesaSearchController(sistema));
+
+        /*itemAddReceita.addActionListener(new ReceitaAddController(sistema));
+        itemRemoveReceita.addActionListener(new ReceitaRemoveController(sistema));
+        itemSearchReceita.addActionListener(new ReceitaSearchController(sistema));*/
     }
 
     public static void main(String[] args) {
@@ -109,6 +113,7 @@ public class FinancasGUI extends JFrame {
         janela.setVisible(true);
         WindowListener fechadorDeJanelaPrincipal = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
+               sistema.salvarDados();
                 System.exit(0);
             }
         };

@@ -4,6 +4,7 @@ import br.ufpb.dcx.gerenciadorDeFinancas.exceptions.DespesaJaCadastradaException
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.CategoriaDespesa;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.Despesa;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
+import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaGerenciadorFinancas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,10 +14,10 @@ import java.time.format.DateTimeFormatter;
 
 public class DespesaAddController implements ActionListener {
 
-    private SistemaFinancas financas;
+    private SistemaGerenciadorFinancas financas;
     private JFrame janelaPrincipal;
 
-    public DespesaAddController(SistemaFinancas financas, JFrame janela){
+    public DespesaAddController(SistemaGerenciadorFinancas financas, JFrame janela){
         this.financas = financas;
         this.janelaPrincipal = janela;
     }
