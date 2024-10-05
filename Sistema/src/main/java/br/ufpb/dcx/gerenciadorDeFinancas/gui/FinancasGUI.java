@@ -60,13 +60,10 @@ public class FinancasGUI extends JFrame {
         JButton btnReceita = new JButton("Gerenciar minha receita");
         JButton btnRelatorios = new JButton("Exibir relatórios");
 
-        //TODO Implementar as classes corretas nas expressões lambda
         btnDespesas.addActionListener(e -> {
              GerenciarMinhasDespesasGui despesasGUI = new GerenciarMinhasDespesasGui();
             despesasGUI.setVisible(true);
         });
-
-
 
         btnReceita.addActionListener(e -> {
              MinhasReceitasGUI receitasGUI = new MinhasReceitasGUI();
