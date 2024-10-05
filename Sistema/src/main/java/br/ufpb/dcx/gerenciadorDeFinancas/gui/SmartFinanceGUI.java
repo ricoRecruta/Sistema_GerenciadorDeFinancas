@@ -15,13 +15,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class FinancasGUI extends JFrame {
+public class SmartFinanceGUI extends JFrame {
     JLabel linha1, linha2;
     ImageIcon capaSmartFinance;
     private  static SistemaGerenciadorFinancas sistema;
 
 
-    public FinancasGUI() {
+    public SmartFinanceGUI() {
         sistema = new SistemaFinancas();
         sistema.recuperarDados();
 
@@ -149,7 +149,7 @@ public class FinancasGUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        JFrame janela = new FinancasGUI();
+        JFrame janela = new SmartFinanceGUI();
         janela.setVisible(true);
         WindowListener fechadorDeJanelaPrincipal = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
