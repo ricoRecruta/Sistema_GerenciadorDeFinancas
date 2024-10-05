@@ -86,6 +86,11 @@ public class FinancasGUI extends JFrame {
         itemAddDespesa.addActionListener(addcontroller);
         DespesaEditController editController = new DespesaEditController(sistema,this);
         itemEditDespesa.addActionListener(editController);
+        DespesaRemoveController removeController = new DespesaRemoveController(sistema, this);
+        itemRemoveDespesa.addActionListener(removeController);
+        DespesaSearchController searchController = new DespesaSearchController(sistema, this);
+        itemSearchDespesa.addActionListener(searchController);
+
 
         // Menu "Gerenciar Receitas"
         JMenu menuReceitas = new JMenu("RECEITAS");
