@@ -84,62 +84,62 @@ public class SmartFinanceGUI extends JFrame {
 
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);
 
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.setPreferredSize(new Dimension(1000, 40));
-
-
-        // Menu "Gerenciar Despesas"
-        JMenu menuDespesas = new JMenu("DESPESAS");
-        JMenuItem itemAddDespesa = new JMenuItem("Cadastrar Despesa");
-        JMenuItem itemEditDespesa = new JMenuItem("Editar Despesa");
-        JMenuItem itemRemoveDespesa = new JMenuItem("Remover Despesa");
-        JMenuItem itemSearchDespesa = new JMenuItem("Buscar Despesa");
-        menuDespesas.add(itemAddDespesa);
-        menuDespesas.add(itemEditDespesa);
-        menuDespesas.add(itemRemoveDespesa);
-        menuDespesas.add(itemSearchDespesa);
-
-        //Controllers
-        DespesaAddController addcontroller = new DespesaAddController(sistema, this);
-        itemAddDespesa.addActionListener(addcontroller);
-        DespesaEditController editController = new DespesaEditController(sistema,this);
-        itemEditDespesa.addActionListener(editController);
-        DespesaRemoveController removeController = new DespesaRemoveController(sistema, this);
-        itemRemoveDespesa.addActionListener(removeController);
-        DespesaSearchController searchController = new DespesaSearchController(sistema, this);
-        itemSearchDespesa.addActionListener(searchController);
-
-
-        // Menu "Gerenciar Receitas"
-        JMenu menuReceitas = new JMenu("RECEITAS");
-        JMenuItem itemAddReceita = new JMenuItem("Cadastrar Receita");
-        JMenuItem itemEditReceita = new JMenuItem("Editar Receita");
-        JMenuItem itemRemoveReceita = new JMenuItem("Remover Receita");
-        JMenuItem itemSearchReceita = new JMenuItem("Buscar Receita");
-        JMenuItem itemViewReceita = new JMenuItem("Exibir Receita Mensal");
-        menuReceitas.add(itemAddReceita);
-        menuReceitas.add(itemEditReceita);
-        menuReceitas.add(itemRemoveReceita);
-        menuReceitas.add(itemSearchReceita);
-        menuReceitas.add(itemViewReceita);
-
-        ReceitaAddController teste = new ReceitaAddController(sistema, this);
-        itemAddReceita.addActionListener(teste);
-
-        //Menu "Exibir gastos"
-        JMenu menuExibirGastos = new JMenu("EXIBIR GASTOS");
-        JMenuItem itemExibirTotalGasto = new JMenuItem("Exibir Gasto Mensal");
-        JMenuItem itemExibirGastoMensal = new JMenuItem("Exibir Total Gasto");
-        JMenuItem itemExibirSaldoMes = new JMenuItem("Exibir Saldo Mensal");
-        menuExibirGastos.add(itemExibirGastoMensal);
-        menuExibirGastos.add(itemExibirTotalGasto);
-        menuExibirGastos.add(itemExibirSaldoMes);
-
-        menuBar.add(menuDespesas);
-        menuBar.add(menuReceitas);
-        menuBar.add(menuExibirGastos);
-
-        setJMenuBar(menuBar);
+//        JMenuBar menuBar = new JMenuBar();
+//        menuBar.setPreferredSize(new Dimension(1000, 40));
+//
+//
+//        // Menu "Gerenciar Despesas"
+//        JMenu menuDespesas = new JMenu("DESPESAS");
+//        JMenuItem itemAddDespesa = new JMenuItem("Cadastrar Despesa");
+//        JMenuItem itemEditDespesa = new JMenuItem("Editar Despesa");
+//        JMenuItem itemRemoveDespesa = new JMenuItem("Remover Despesa");
+//        JMenuItem itemSearchDespesa = new JMenuItem("Buscar Despesa");
+//        menuDespesas.add(itemAddDespesa);
+//        menuDespesas.add(itemEditDespesa);
+//        menuDespesas.add(itemRemoveDespesa);
+//        menuDespesas.add(itemSearchDespesa);
+//
+//        //Controllers
+//        DespesaAddController addcontroller = new DespesaAddController(sistema, this);
+//        itemAddDespesa.addActionListener(addcontroller);
+//        DespesaEditController editController = new DespesaEditController(sistema,this);
+//        itemEditDespesa.addActionListener(editController);
+//        DespesaRemoveController removeController = new DespesaRemoveController(sistema, this);
+//        itemRemoveDespesa.addActionListener(removeController);
+//        DespesaSearchController searchController = new DespesaSearchController(sistema, this);
+//        itemSearchDespesa.addActionListener(searchController);
+//
+//
+//        // Menu "Gerenciar Receitas"
+//        JMenu menuReceitas = new JMenu("RECEITAS");
+//        JMenuItem itemAddReceita = new JMenuItem("Cadastrar Receita");
+//        JMenuItem itemEditReceita = new JMenuItem("Editar Receita");
+//        JMenuItem itemRemoveReceita = new JMenuItem("Remover Receita");
+//        JMenuItem itemSearchReceita = new JMenuItem("Buscar Receita");
+//        JMenuItem itemViewReceita = new JMenuItem("Exibir Receita Mensal");
+//        menuReceitas.add(itemAddReceita);
+//        menuReceitas.add(itemEditReceita);
+//        menuReceitas.add(itemRemoveReceita);
+//        menuReceitas.add(itemSearchReceita);
+//        menuReceitas.add(itemViewReceita);
+//
+//        ReceitaAddController teste = new ReceitaAddController(sistema, this);
+//        itemAddReceita.addActionListener(teste);
+//
+//        //Menu "Exibir gastos"
+//        JMenu menuExibirGastos = new JMenu("EXIBIR GASTOS");
+//        JMenuItem itemExibirTotalGasto = new JMenuItem("Exibir Gasto Mensal");
+//        JMenuItem itemExibirGastoMensal = new JMenuItem("Exibir Total Gasto");
+//        JMenuItem itemExibirSaldoMes = new JMenuItem("Exibir Saldo Mensal");
+//        menuExibirGastos.add(itemExibirGastoMensal);
+//        menuExibirGastos.add(itemExibirTotalGasto);
+//        menuExibirGastos.add(itemExibirSaldoMes);
+//
+//        menuBar.add(menuDespesas);
+//        menuBar.add(menuReceitas);
+//        menuBar.add(menuExibirGastos);
+//
+//        setJMenuBar(menuBar);
 
         //Esse painel central estava ficando por cima da Imagem. Coloquei a imagem por cima dele nas linhas 41 à 56
         /*JPanel painelCentral = new JPanel();
