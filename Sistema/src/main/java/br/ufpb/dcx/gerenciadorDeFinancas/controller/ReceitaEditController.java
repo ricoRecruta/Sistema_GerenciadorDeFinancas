@@ -17,6 +17,7 @@ public class ReceitaEditController implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        //TODO: falta passar a janela ainda
         Double valorAMudar = Double.parseDouble(JOptionPane.showInputDialog(null,"Digite o valor que deseja colocar"));
         try {
             sistema.editarValorReceita(receita.getIdReceita(), valorAMudar);
