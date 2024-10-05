@@ -62,16 +62,19 @@ public class FinancasGUI extends JFrame {
 
         btnDespesas.addActionListener(e -> {
              GerenciarMinhasDespesasGui despesasGUI = new GerenciarMinhasDespesasGui();
+             dispose();
             despesasGUI.setVisible(true);
         });
 
         btnReceita.addActionListener(e -> {
              MinhasReceitasGUI receitasGUI = new MinhasReceitasGUI();
+             dispose();
              receitasGUI.setVisible(true);
         });
 
         btnRelatorios.addActionListener(e -> {
             ExibeRelatorioGUI relatoriosGUI = new ExibeRelatorioGUI();
+            dispose();
             relatoriosGUI.setVisible(true);
         });
 
