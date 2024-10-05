@@ -13,69 +13,88 @@ import java.time.LocalDate;
 
 public class ExibeRelatorioGUI extends JFrame {
     JLabel linha1, linha2;
-    private  static SistemaGerenciadorFinancas sistema;
+    ImageIcon iconeGastos = new ImageIcon("./Sistema/src/imgs/gastosicon.png");
+    ImageIcon iconeMensal = new ImageIcon("./Sistema/src/imgs/gastomensalicon.png");
+    ImageIcon iconeReceita = new ImageIcon("./Sistema/src/imgs/receitaicon.png");
+    private static SistemaGerenciadorFinancas sistema;
 
-    public ExibeRelatorioGUI(){
+    public ExibeRelatorioGUI() {
         sistema = new SistemaFinancas();
         sistema.recuperarDados();
+
+        //Redimensionando os icones
+        iconeGastos = new ImageIcon(iconeGastos.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
+        iconeMensal = new ImageIcon(iconeMensal.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
+        iconeReceita = new ImageIcon(iconeReceita.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
 
         setTitle("Sistema Gerenciador de Finanças");
         setSize(800, 600);
         setLocation(400, 100);
         setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new FlowLayout());
+        getContentPane().setLayout(new BorderLayout());
 
-        linha1 = new JLabel("RELATÓRIOS FINANCEIROS", JLabel.CENTER);
+        linha1 = new JLabel("DETALHAMENTO FINANCEIRO: ", JLabel.CENTER);
         linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
         getContentPane().add(linha1, BorderLayout.NORTH);
 
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.setPreferredSize(new Dimension(1000, 40));
-        JMenu menuExibirGastos = new JMenu("MENU");
+        //TODO Imagem na linha 2
 
-        JMenuItem itemPaginaInicial = new JMenuItem("Página Inicial");
-        JMenuItem itemDespesas = new JMenuItem("Gerência de Despesas");
-        JMenuItem itemReceitas = new JMenuItem("Gerência de Receitas");
+        //Botões
+        JPanel painelBotoes = new JPanel();
+        painelBotoes.setLayout(new FlowLayout());
 
-        menuExibirGastos.add(itemPaginaInicial);
-        menuExibirGastos.add(itemDespesas);
-        menuExibirGastos.add(itemReceitas);
-
-        menuBar.add(menuExibirGastos);
-        setJMenuBar(menuBar);
-
-        itemPaginaInicial.addActionListener(new PaginaInicialController(this));
-
-        // Botão 1: Exibir total de gastos
-        JButton botaoTotalGastos = new JButton("Exibir total de Gastos");
+        // BTN1: EXIBIR TOTAL DE GASTOS
+        JButton botaoTotalGastos = new JButton("Exibir total de Gastos", iconeGastos);
+        botaoTotalGastos.setPreferredSize(new Dimension(200, 50));
         botaoTotalGastos.addActionListener(e -> {
             LocalDate dataAtual = LocalDate.now();
             double totalGastos = sistema.exibirTotalGastoDoMes(dataAtual);
             JOptionPane.showMessageDialog(null, "Total de gastos no mês: " + totalGastos);
         });
 
-        // Botão 2: Exibir gasto mensal
-        JButton botaoGastoMensal = new JButton("Exibir gasto mensal");
+        // BTN2: EXIBIR GASTO MENSAL
+        JButton botaoGastoMensal = new JButton("Exibir gasto mensal", iconeMensal);
+        botaoGastoMensal.setPreferredSize(new Dimension(200, 50));
         botaoGastoMensal.addActionListener(e -> {
             LocalDate dataAtual = LocalDate.now();
             String saldoMensal = sistema.verificarSaldoDoMes(dataAtual, dataAtual.getMonthValue());
             JOptionPane.showMessageDialog(null, saldoMensal);
         });
 
-        // Botão 3: Exibir receita
-        JButton botaoReceita = new JButton("Exibir receita");
+        // BTN3: EXIBIR RECEITA
+        JButton botaoReceita = new JButton("Exibir receita", iconeReceita);
+        botaoReceita.setPreferredSize(new Dimension(200, 50));
         botaoReceita.addActionListener(e -> {
             LocalDate dataAtual = LocalDate.now();
             double receitaTotal = sistema.exibirReceitaTotalDoMes(dataAtual);
             JOptionPane.showMessageDialog(null, "Receita total do mês: " + receitaTotal);
         });
 
-        // Adicionando botões à interface
-        getContentPane().add(botaoTotalGastos);
-        getContentPane().add(botaoGastoMensal);
-        getContentPane().add(botaoReceita);
+        painelBotoes.add(botaoTotalGastos);
+        painelBotoes.add(botaoGastoMensal);
+        painelBotoes.add(botaoReceita);
+        getContentPane().add(painelBotoes, BorderLayout.CENTER);
+
+        //Menu
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.setPreferredSize(new Dimension(1000, 40));
+        JMenu menuExibirGastos = new JMenu("MENU");
+        JMenuItem itemPaginaInicial = new JMenuItem("Página Inicial");
+        JMenuItem itemDespesas = new JMenuItem("Gerência de Despesas");
+        JMenuItem itemReceitas = new JMenuItem("Gerência de Receitas");
+        menuExibirGastos.add(itemPaginaInicial);
+        menuExibirGastos.add(itemDespesas);
+        menuExibirGastos.add(itemReceitas);
+        menuBar.add(menuExibirGastos);
+        setJMenuBar(menuBar);
+
+        itemPaginaInicial.addActionListener(new PaginaInicialController(this));
+        //TODO Implementar outras telas do sistema
+//        itemDespesas.addActionListener(new (this));
+//        itemReceitas.addActionListener(new (this));
     }
+
     public static void main(String[] args) {
         JFrame janela = new ExibeRelatorioGUI();
         janela.setVisible(true);
