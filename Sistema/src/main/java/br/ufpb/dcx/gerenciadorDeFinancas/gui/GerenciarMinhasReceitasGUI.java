@@ -10,7 +10,7 @@ import java.awt.event.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class MinhasReceitasGUI extends JFrame {
+public class GerenciarMinhasReceitasGUI extends JFrame {
     JLabel linha1, linha2;
     ImageIcon iconeCadastrtar = new ImageIcon("./Sistema/src/imgs/registro.png");
     ImageIcon iconePesquisar = new ImageIcon("./Sistema/src/imgs/lupa.png");
@@ -22,7 +22,7 @@ public class MinhasReceitasGUI extends JFrame {
     //TODO: mudar depois esse método estático
     private static SistemaGerenciadorFinancas sistema;
 
-    public MinhasReceitasGUI(){
+    public GerenciarMinhasReceitasGUI(){
         sistema = new SistemaFinancas();
         sistema.recuperarDados();
 
@@ -55,21 +55,17 @@ public class MinhasReceitasGUI extends JFrame {
         //adcionando a ação do botão
         botaoCadastrarReceita.addActionListener( new ReceitaAddController(sistema,this));
 
-        //TODO: implementar a lógica dos botões 2 a 4
         //Botão 2: Pesquisar
         JButton botaoPesquisarReceita = new JButton("Pesquisar receita", iconePesquisar);
-        //adcionando a ação do botão
-        //botaoPesquisarReceita.addActionListener(new ReceitaSearchController(sistema));
+        botaoPesquisarReceita.addActionListener(new ReceitaSearchController(sistema, this));
 
         //Botão 3: Editar
         JButton botaoEditarReceita = new JButton(" Editar receita", iconeEditar);
-        //adcionando a ação do botão
-        //botaoEditarReceita.addActionListener(new ReceitaEditController(sistema));
+        botaoEditarReceita.addActionListener(new ReceitaEditController(sistema, this));
 
         //Botão 4: Remover
         JButton botaoRemoverReceita = new JButton("Remover receita",iconeRemover);
-        //adcionando a ação do botão
-        //botaoRemoverReceita.addActionListener(new ReceitaRemoveController(sistema,this));
+        botaoRemoverReceita.addActionListener(new ReceitaRemoveController(sistema,this));
 
         //Botão 5: Exibir
         JButton botaoExibirReceitas = new JButton("Exibir receitas", iconeExiberReceita);
@@ -130,7 +126,7 @@ public class MinhasReceitasGUI extends JFrame {
     }
 
     public static void main(String[] args){
-        JFrame janelaPrincipal = new MinhasReceitasGUI();
+        JFrame janelaPrincipal = new GerenciarMinhasReceitasGUI();
         janelaPrincipal.setVisible(true);
         WindowListener fechadorDeJanelaPrincipal = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {

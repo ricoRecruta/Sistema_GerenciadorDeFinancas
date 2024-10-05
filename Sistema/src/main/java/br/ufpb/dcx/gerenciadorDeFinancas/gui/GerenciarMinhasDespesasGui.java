@@ -108,7 +108,7 @@ public class GerenciarMinhasDespesasGui extends JFrame {
 
         //Lógica para ir para MinhasReceitasGUI
         itemReceita.addActionListener(e -> {
-            JFrame janela = new MinhasReceitasGUI();
+            JFrame janela = new GerenciarMinhasReceitasGUI();
             dispose();
             janela.setVisible(true);
         });

@@ -97,7 +97,7 @@ public class ExibeRelatorioGUI extends JFrame {
             paginaDespesa.setVisible(true);
         });
        itemReceitas.addActionListener(e -> {
-           JFrame janela = new MinhasReceitasGUI();
+           JFrame janela = new GerenciarMinhasReceitasGUI();
            dispose();
            janela.setVisible(true);
        });
