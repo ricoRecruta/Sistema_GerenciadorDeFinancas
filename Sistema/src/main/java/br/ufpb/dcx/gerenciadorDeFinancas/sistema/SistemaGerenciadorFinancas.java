@@ -85,6 +85,8 @@ public interface SistemaGerenciadorFinancas {
 
     public Receita pesquisarReceitaPeloId(String id)throws ReceitaNaoExisteException;
 
+    public void removerReceita(Receita receita) throws ReceitaNaoExisteException;
+
 
 
 }

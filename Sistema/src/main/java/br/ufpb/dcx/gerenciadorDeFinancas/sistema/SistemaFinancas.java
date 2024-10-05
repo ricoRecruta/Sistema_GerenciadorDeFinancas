@@ -164,4 +164,12 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
             System.err.println(e.getMessage());
         }
     }
+
+    public void removerReceita(Receita receita) throws ReceitaNaoExisteException{
+        if(this.receitas.containsValue(receita)){
+            this.receitas.remove(receita);
+        } else {
+            throw new ReceitaNaoExisteException("Essa receita não existe ou não está cadastrada no sistema");
+        }
+    }
 }
