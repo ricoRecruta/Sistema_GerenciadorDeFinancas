@@ -30,7 +30,7 @@ public class DespesaEditController implements ActionListener {
             String valorStr = JOptionPane.showInputDialog(janelaPrincipal, "Digite o novo valor da despesa: ");
             Double novoValor = Double.parseDouble(valorStr);
             String descricao = JOptionPane.showInputDialog(janelaPrincipal, "Digite a nova Descrição da Despesa:");
-            String dataStr = JOptionPane.showInputDialog(janelaPrincipal, "Informe a  nova data da Despesa: Modelo = yyy-MM-dd ");
+            String dataStr = JOptionPane.showInputDialog(janelaPrincipal, "Informe a  nova data da Despesa: Modelo = yyyy-MM-dd ");
             LocalDate data = LocalDate.parse(dataStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
             financas.editarDespesa(id, categoria, novoValor, descricao, data);
