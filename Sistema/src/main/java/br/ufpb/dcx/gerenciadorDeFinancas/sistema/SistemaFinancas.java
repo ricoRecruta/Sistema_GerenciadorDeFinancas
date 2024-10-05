@@ -154,4 +154,12 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
             System.err.println(e.getMessage());
         }
     }
+
+    public Receita pesquisarReceitaPeloId(String id) throws ReceitaNaoExistenteException{
+        if(!this.receitas.containsKey(id)){
+            throw new ReceitaNaoExistenteException("Não existe receita com o id passado");
+        } else {
+            return this.receitas.get(id);
+        }
+    }
 }
