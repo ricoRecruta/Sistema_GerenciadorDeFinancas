@@ -38,7 +38,7 @@ public class GerenciarMinhasReceitasGUI extends JFrame {
         setLocation(400,100);
         setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new FlowLayout());
+        getContentPane().setLayout(new BorderLayout());
 
         linha1 = new JLabel("GESTÃO DE FINANÇAS", JLabel.CENTER);
         linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
