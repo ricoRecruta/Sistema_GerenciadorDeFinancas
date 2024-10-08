@@ -14,7 +14,7 @@ public class DespesaSearchController implements ActionListener {
 
     private SistemaGerenciadorFinancas financas;
     private JFrame janelaPrincipal;
-
+    //TODO: modificar o DespesaSearchController para que o usuário passe o id da Despesa e ele retorne a Despesa desejada
     public DespesaSearchController(SistemaGerenciadorFinancas financas, JFrame janela){
         this.financas = financas;
         this.janelaPrincipal = janela;
@@ -29,6 +29,7 @@ public class DespesaSearchController implements ActionListener {
             JOptionPane.showMessageDialog(janelaPrincipal, "Nenhuma despesa foi encontrada para a categoria: " + categoria);
         }else {
             JOptionPane.showMessageDialog(janelaPrincipal,"Despesa(s) encontrada(s) com sucesso!");
+
         }
 
 

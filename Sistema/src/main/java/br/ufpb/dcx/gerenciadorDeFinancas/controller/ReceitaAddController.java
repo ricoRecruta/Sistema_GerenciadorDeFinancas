@@ -27,6 +27,7 @@ public class ReceitaAddController implements ActionListener {
 
     public static class InterfaceCadastraReceitaGUI extends JFrame {
         private SistemaGerenciadorFinancas sistemaD;
+        private JTextField idField;
         private JTextField valorField;
         private JTextField dataField;
         private JButton salvarButton;
@@ -71,14 +72,24 @@ public class ReceitaAddController implements ActionListener {
             mainPanel.add(dataField, gbc);
 
             gbc.gridx = 1;
-            gbc.gridy = 2;
+            gbc.gridy = 4;
             salvarButton = new JButton("Salvar");
             mainPanel.add(salvarButton, gbc);
 
             gbc.gridx = 1;
-            gbc.gridy = 3;
+            gbc.gridy = 4;
             resultadoLabel = new JLabel("");
             mainPanel.add(resultadoLabel, gbc);
+
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            mainPanel.add(new JLabel("ID: "), gbc);
+
+
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            idField = new JTextField(20);
+            mainPanel.add(idField, gbc);
 
             getContentPane().add(mainPanel, BorderLayout.CENTER);
 
@@ -86,8 +97,9 @@ public class ReceitaAddController implements ActionListener {
                 try {
                     double valor = Double.parseDouble(valorField.getText());
                     LocalDate data = LocalDate.parse(dataField.getText(), dateFormatter);
+                    String id = idField.getText();
 
-                    Receita receita = new Receita("",valor, data);
+                    Receita receita = new Receita(id,valor, data);
                     sistema.cadastrarReceita(receita);
 
 

@@ -24,6 +24,7 @@ public class ReceitaRemoveController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
+            //TODO: mudar o método de remover - Só precisar passar o id da receita para remover em vez de todos esses parâmetros.
             String id = JOptionPane.showInputDialog(janela, "Informe o ID para remover:");
             String valorStr = JOptionPane.showInputDialog(janela, "Digite o valor da receita à remover: ");
             double valor = Double.parseDouble(valorStr);

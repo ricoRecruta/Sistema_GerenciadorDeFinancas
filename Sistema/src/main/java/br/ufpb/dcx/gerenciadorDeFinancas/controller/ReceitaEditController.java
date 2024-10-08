@@ -15,14 +15,15 @@ public class ReceitaEditController implements ActionListener {
 
     public ReceitaEditController(SistemaGerenciadorFinancas sistema, JFrame janela) {
         this.sistema = sistema;
-        this.receita = receita;
         this.janela = janela;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String id = JOptionPane.showInputDialog(janela,"Digite o id a ser encontrado");
         double valorEditado = Double.parseDouble(JOptionPane.showInputDialog(janela, "Digite o novo valor:"));
         try {
+            this.receita = sistema.pesquisarReceitaPeloId(id);
             sistema.editarValorReceita(receita.getIdReceita(), valorEditado);
         } catch (ReceitaNaoExisteException ex) {
             JOptionPane.showMessageDialog(janela, ex.getMessage());

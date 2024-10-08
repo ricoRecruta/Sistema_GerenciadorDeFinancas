@@ -10,19 +10,18 @@ import java.awt.event.ActionListener;
 
 public class ReceitaSearchController implements ActionListener {
     private SistemaGerenciadorFinancas sistema;
-    private String id;
     private JFrame janela;
 
     public ReceitaSearchController(SistemaGerenciadorFinancas sistema, JFrame janela){
         this.sistema = sistema;
-        this.id = id;
         this.janela = janela;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            Receita receita = sistema.pesquisarReceitaPeloId(this.id);
+            String id = JOptionPane.showInputDialog(janela,"Digite o id:");
+            Receita receita = sistema.pesquisarReceitaPeloId(id);
             JOptionPane.showMessageDialog(janela,receita);
         }catch(ReceitaNaoExisteException ex){
             JOptionPane.showMessageDialog(janela, ex.getMessage());

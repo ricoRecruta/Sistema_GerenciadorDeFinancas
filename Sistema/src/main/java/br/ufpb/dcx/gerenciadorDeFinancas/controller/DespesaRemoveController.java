@@ -21,6 +21,8 @@ public class DespesaRemoveController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
+            //TODO: mudar o método de remover - Só precisar passar o id da receita para remover em vez de todos esses parâmetros.
+
             String id = JOptionPane.showInputDialog(janelaPrincipal, "Informe o ID para remover:");
             CategoriaDespesa categoria = (CategoriaDespesa) JOptionPane.showInputDialog(janelaPrincipal, "Selecione a categoria para remover:", "Categoria", JOptionPane.QUESTION_MESSAGE, null, CategoriaDespesa.values(), CategoriaDespesa.values()[0]);
             String valorStr = JOptionPane.showInputDialog(janelaPrincipal, "Digite o valor da despesa à remover: ");
