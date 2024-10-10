@@ -52,7 +52,7 @@ public class GerenciarMinhasDespesasGui extends JFrame {
         botaoCadastrarDespesa.setPreferredSize(new Dimension(200, 50));
 
         //ação do botão para cadastrar
-        //TODO: verificar de passar a instancia correta do sistema
+        //TODO: verificar de passar a instancia correta do sistemaa
         botaoCadastrarDespesa.addActionListener(new DespesaAddController(this.sistema, this));
 
 
