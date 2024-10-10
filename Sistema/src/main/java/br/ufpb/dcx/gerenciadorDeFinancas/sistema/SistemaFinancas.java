@@ -37,10 +37,10 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     }
 
     public void removerReceita(Receita receita) throws ReceitaNaoExisteException{
-        if(this.receitas.containsValue(receita)){
+        if(this.receitas.containsKey(receita.getIdReceita())){
             this.receitas.remove(receita);
-        } else {
-            throw new ReceitaNaoExisteException("Essa receita não existe ou não está cadastrada no sistema");
+        }else{
+        throw new ReceitaNaoExisteException("Essa receita não existe ou não está cadastrada no sistema");
         }
     }
 
