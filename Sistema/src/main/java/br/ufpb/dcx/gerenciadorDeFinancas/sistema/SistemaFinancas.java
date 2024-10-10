@@ -71,7 +71,6 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
             compraExistente.setValorDespesa(novoValor);
             compraExistente.setDescricao(novaDescricao);
             compraExistente.setData(data);
-            despesas.put(idDespesa, compraExistente); // TODO: olha o bad small ae
         } else {
             throw new DespesaNaoExisteException("Compra com o ID " + idDespesa + " não encontrada no sistema.");
         }
@@ -129,7 +128,10 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
     @Override
     public double exibirTotalGastoDoMes(LocalDate data) {
-        return this.despesas.values().stream().filter(despesas -> despesas.getData().getMonth().equals(data.getMonth())).mapToDouble(Despesa::getValorDespesa).sum();
+        double totalGasto = this.despesas.values().stream().filter(despesas -> despesas.getData().getMonth().equals(data.getMonth())).mapToDouble(Despesa::getValorDespesa).sum();
+        System.out.println(totalGasto);
+
+        return totalGasto;
     }
 
     @Override

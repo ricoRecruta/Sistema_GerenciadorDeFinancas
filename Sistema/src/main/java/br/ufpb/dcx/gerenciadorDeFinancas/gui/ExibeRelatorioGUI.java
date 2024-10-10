@@ -10,6 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class ExibeRelatorioGUI extends JFrame {
     JLabel linha1, linha2;
@@ -17,6 +18,8 @@ public class ExibeRelatorioGUI extends JFrame {
     ImageIcon iconeMensal = new ImageIcon("./Sistema/src/imgs/gastomensalicon.png");
     ImageIcon iconeReceita = new ImageIcon("./Sistema/src/imgs/receitaicon.png");
     private static SistemaGerenciadorFinancas sistema;
+    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private JTextField dataField;
 
     public ExibeRelatorioGUI() {
         sistema = new SistemaFinancas();
@@ -48,13 +51,14 @@ public class ExibeRelatorioGUI extends JFrame {
         JButton botaoTotalGastos = new JButton("Exibir total de Gastos", iconeGastos);
         botaoTotalGastos.setPreferredSize(new Dimension(200, 50));
         botaoTotalGastos.addActionListener(e -> {
-            LocalDate dataAtual = LocalDate.now();
-            double totalGastos = sistema.exibirTotalGastoDoMes(dataAtual);
-            JOptionPane.showMessageDialog(null, "Total de gastos no mês: " + totalGastos);
+            String data = JOptionPane.showInputDialog(this, "Data a ser pesquisada? (dd/MM/yyyy)");
+            LocalDate dataCliente = LocalDate.parse(data, dateFormatter);
+            double totalGastos = sistema.exibirTotalGastoDoMes(dataCliente);
+            JOptionPane.showMessageDialog(this, "Total de gastos no mês: " + totalGastos);
         });
 
-        // BTN2: EXIBIR GASTO MENSAL
-        JButton botaoGastoMensal = new JButton("Exibir gasto mensal", iconeMensal);
+        // BTN2: EXIBIR SALDO POSITIVO/NEGATIVO MENSAL
+        JButton botaoGastoMensal = new JButton("Exibir saldo mensal", iconeMensal);
         botaoGastoMensal.setPreferredSize(new Dimension(200, 50));
         botaoGastoMensal.addActionListener(e -> {
             LocalDate dataAtual = LocalDate.now();
