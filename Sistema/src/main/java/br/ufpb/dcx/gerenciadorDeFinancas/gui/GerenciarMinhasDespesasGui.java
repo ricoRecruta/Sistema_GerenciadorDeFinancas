@@ -1,9 +1,6 @@
 package br.ufpb.dcx.gerenciadorDeFinancas.gui;
 
-import br.ufpb.dcx.gerenciadorDeFinancas.controller.DespesaAddController;
-import br.ufpb.dcx.gerenciadorDeFinancas.controller.DespesaRemoveController;
-import br.ufpb.dcx.gerenciadorDeFinancas.controller.DespesaSearchController;
-import br.ufpb.dcx.gerenciadorDeFinancas.controller.PaginaInicialController;
+import br.ufpb.dcx.gerenciadorDeFinancas.controller.*;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaGerenciadorFinancas;
 
@@ -63,7 +60,7 @@ public class GerenciarMinhasDespesasGui extends JFrame {
         JButton botaoEditarDespesa = new JButton("Editar despesa", iconeEditar);
         botaoEditarDespesa.setPreferredSize(new Dimension(200, 50));
         //TODO: verificar a implementação da lógica pesquisar
-        botaoEditarDespesa.addActionListener(new DespesaSearchController(this.sistema, this));
+        botaoEditarDespesa.addActionListener(new DespesaEditController(this.sistema, this));
 
 
         //Botão 3: Remover

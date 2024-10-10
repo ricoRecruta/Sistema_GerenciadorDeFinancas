@@ -28,11 +28,9 @@ public class ReceitaRemoveController implements ActionListener {
             String dataStr = JOptionPane.showInputDialog(janela, "Informe a data da receita para remover: Modelo = yyyy-MM-dd ");
             LocalDate data = LocalDate.parse(dataStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));*/
         String id = JOptionPane.showInputDialog(janela, "Informe o ID para remover:");
-
         try {
-            Receita n = sistema.pesquisarReceitaPeloId(id);
-            //TODO: mudar o método de remover - Só precisar passar o id da receita para remover em vez de todos esses parâmetros.
-            sistema.removerReceita(n);
+            Receita remocao = sistema.pesquisarReceitaPeloId(id);
+            sistema.removerReceita(remocao);
             JOptionPane.showMessageDialog(janela, "Receita removida com sucesso!");
         } catch (ReceitaNaoExisteException ex) {
             JOptionPane.showMessageDialog(janela, ex.getMessage());

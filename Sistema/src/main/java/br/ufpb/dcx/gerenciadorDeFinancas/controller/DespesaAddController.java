@@ -24,19 +24,22 @@ public class DespesaAddController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String nome = JOptionPane.showInputDialog(janelaPrincipal,"Digite o novo nome da despesa");
+
+        String id = JOptionPane.showInputDialog(janelaPrincipal, "Digite o ID da Despesa: " );
+        CategoriaDespesa categoria = (CategoriaDespesa) JOptionPane.showInputDialog(janelaPrincipal,"Selecione a categoria:","Categoria", JOptionPane.QUESTION_MESSAGE, null, CategoriaDespesa.values(), CategoriaDespesa.values()[0]);
+        String valorStr = JOptionPane.showInputDialog(janelaPrincipal,"Digite o valor da despesa: ");
+        Double valor = Double.parseDouble(valorStr);
+        String descricao = JOptionPane.showInputDialog(janelaPrincipal, "Digite a Descrição da Despesa:");
+        String dataStr = JOptionPane.showInputDialog(janelaPrincipal, "Informe a data da Despesa: Modelo = yyyy-MM-dd ");
+        LocalDate data = LocalDate.parse(dataStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        Despesa novaDespesa = new Despesa(nome,id, categoria, valor, descricao, data);
         try {
-            String id = JOptionPane.showInputDialog(janelaPrincipal, "Digite o ID da Despesa: " );
-            CategoriaDespesa categoria = (CategoriaDespesa) JOptionPane.showInputDialog(janelaPrincipal,"Selecione a categoria:","Categoria", JOptionPane.QUESTION_MESSAGE, null, CategoriaDespesa.values(), CategoriaDespesa.values()[0]);
-            String valorStr = JOptionPane.showInputDialog(janelaPrincipal,"Digite o valor da despesa: ");
-            Double valor = Double.parseDouble(valorStr);
-            String descricao = JOptionPane.showInputDialog(janelaPrincipal, "Digite a Descrição da Despesa:");
-            String dataStr = JOptionPane.showInputDialog(janelaPrincipal, "Informe a data da Despesa: Modelo = yyyy-MM-dd ");
-            LocalDate data = LocalDate.parse(dataStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-            Despesa novaDespesa = new Despesa(id, categoria, valor, descricao, data);
-
             financas.cadastrarDespesa(novaDespesa);
             JOptionPane.showMessageDialog(janelaPrincipal, "Despesa cadastrada com Sucesso!");
+
+            System.out.println(novaDespesa);
 
         }catch (DespesaJaCadastradaException ex){
             JOptionPane.showMessageDialog(janelaPrincipal,ex.getMessage());

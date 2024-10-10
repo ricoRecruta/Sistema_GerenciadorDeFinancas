@@ -37,7 +37,7 @@ public interface SistemaGerenciadorFinancas {
      * @param novaDescricao A nova descrição da despesa.
      * @throws DespesaNaoExisteException Se a despesa com o ID fornecido não estiver cadastrada no sistema.
      */
-    public void editarDespesa(String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao, LocalDate data) throws DespesaNaoExisteException;
+    public void editarDespesa(String nome, String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao, LocalDate data) throws DespesaNaoExisteException;
 
     /**
      * Remove uma despesa do sistema com base no objeto de despesa fornecido.
@@ -86,6 +86,8 @@ public interface SistemaGerenciadorFinancas {
     public Receita pesquisarReceitaPeloId(String id)throws ReceitaNaoExisteException;
 
     public void removerReceita(Receita receita) throws ReceitaNaoExisteException;
+
+    public Despesa pesquisarDespesaPeloId(String id) throws DespesaNaoExisteException;
 
 
 

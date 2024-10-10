@@ -24,11 +24,16 @@ public class DespesaSearchController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         CategoriaDespesa categoria = (CategoriaDespesa) JOptionPane.showInputDialog(janelaPrincipal,"Selecione a categoria","Categoria", JOptionPane.QUESTION_MESSAGE, null, CategoriaDespesa.values(), CategoriaDespesa.values()[0]);
         Collection<Despesa> despesasEncontradas = financas.pesquisarPorCategoria(categoria);
-
+        StringBuilder despesaFinal = new StringBuilder();
         if (despesasEncontradas.isEmpty()){
             JOptionPane.showMessageDialog(janelaPrincipal, "Nenhuma despesa foi encontrada para a categoria: " + categoria);
         }else {
+            for(Despesa de: despesasEncontradas){
+                despesaFinal.append(de.getDescricao()+" "+de.getValorDespesa()+" "+"\n");
+            }
             JOptionPane.showMessageDialog(janelaPrincipal,"Despesa(s) encontrada(s) com sucesso!");
+            JOptionPane.showMessageDialog(janelaPrincipal, despesaFinal.toString());
+
 
         }
 

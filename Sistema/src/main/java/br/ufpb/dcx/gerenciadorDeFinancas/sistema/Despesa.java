@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Despesa implements Serializable{
+    private String nome;
     private String idDespesa;
     private CategoriaDespesa categoriaDespesa;
     private double valorDespesa;
@@ -12,7 +13,8 @@ public class Despesa implements Serializable{
     private LocalDate data;
 
 //teste
-    public Despesa(String idDespesa, CategoriaDespesa categoriaDespesa, double valorDespesa, String descricao, LocalDate data){
+    public Despesa(String nome, String idDespesa, CategoriaDespesa categoriaDespesa, double valorDespesa, String descricao, LocalDate data){
+        this.nome = nome;
         this.idDespesa = idDespesa;
         this.categoriaDespesa = categoriaDespesa;
         this.valorDespesa = valorDespesa;
@@ -21,7 +23,15 @@ public class Despesa implements Serializable{
     }
 
     public Despesa(){
-        this("", CategoriaDespesa.OUTROS, 0.0, "",LocalDate.now());
+        this("","", CategoriaDespesa.OUTROS, 0.0, "",LocalDate.now());
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getIdDespesa() {
@@ -72,6 +82,8 @@ public class Despesa implements Serializable{
         Despesa despesa = (Despesa) o;
 
         if (Double.compare(valorDespesa, despesa.valorDespesa) != 0) return false;
+        if (!Objects.equals(nome, despesa.nome)) return false;
+        if (!Objects.equals(idDespesa, despesa.idDespesa)) return false;
         if (categoriaDespesa != despesa.categoriaDespesa) return false;
         if (!Objects.equals(descricao, despesa.descricao)) return false;
         return Objects.equals(data, despesa.data);
@@ -81,7 +93,9 @@ public class Despesa implements Serializable{
     public int hashCode() {
         int result;
         long temp;
-        result = categoriaDespesa != null ? categoriaDespesa.hashCode() : 0;
+        result = nome != null ? nome.hashCode() : 0;
+        result = 31 * result + (idDespesa != null ? idDespesa.hashCode() : 0);
+        result = 31 * result + (categoriaDespesa != null ? categoriaDespesa.hashCode() : 0);
         temp = Double.doubleToLongBits(valorDespesa);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (descricao != null ? descricao.hashCode() : 0);
@@ -91,6 +105,7 @@ public class Despesa implements Serializable{
 
     public String toString(){
         return "[Despesa: "+this.categoriaDespesa +
+                "\nNome: "+this.nome+
                 "\nValor: "+this.valorDespesa +
                 "\nDescrição: "+this.descricao+
                 "\nData: "+this.data+

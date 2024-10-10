@@ -56,23 +56,22 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     //MÉTODOS DE DESPESAS
     @Override
     public void cadastrarDespesa(Despesa despesa) throws DespesaJaCadastradaException {
-        for (Despesa a : this.despesas.values()) {
-            if (a.equals(despesa)) {
-                throw new DespesaJaCadastradaException("Compra com o ID " + despesa.getIdDespesa() + ", e Data " + despesa.getData() + " já cadastrada no sistema!");
-            }
+        if(this.despesas.containsKey(despesa.getIdDespesa())){
+            throw new DespesaJaCadastradaException("Compra com o ID " + despesa.getIdDespesa() + ", e Data " + despesa.getData() + " já cadastrada no sistema!");
         }
         this.despesas.put(despesa.getIdDespesa(), despesa);
     }
 
     @Override
-    public void editarDespesa(String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao, LocalDate data) throws DespesaNaoExisteException {
+    public void editarDespesa(String nome, String idDespesa, CategoriaDespesa novaCategoria, double novoValor, String novaDescricao, LocalDate data) throws DespesaNaoExisteException {
         if (despesas.containsKey(idDespesa)) {
             Despesa compraExistente = despesas.get(idDespesa);
+            compraExistente.setNome(nome);
             compraExistente.setCategoriaDespesa(novaCategoria);
             compraExistente.setValorDespesa(novoValor);
             compraExistente.setDescricao(novaDescricao);
             compraExistente.setData(data);
-            despesas.put(idDespesa, compraExistente);
+            despesas.put(idDespesa, compraExistente); // TODO: olha o bad small ae
         } else {
             throw new DespesaNaoExisteException("Compra com o ID " + idDespesa + " não encontrada no sistema.");
         }
@@ -81,7 +80,6 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     @Override
     public void removerDespesa(Despesa despesa) throws DespesaNaoExisteException {
         String id = despesa.getIdDespesa();
-
         if (!despesas.containsKey(id)) {
             throw new DespesaNaoExisteException("A despesa com id: " + id + " não existe");
         }
@@ -92,7 +90,6 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     @Override
     public Collection<Despesa> pesquisarPorCategoria(CategoriaDespesa categoria) {
         Collection<Despesa> despesaPorCategoria = new ArrayList<>();
-
         for (Despesa c : this.despesas.values()) {
             if (c.getCategoriaDespesa() == categoria) {
                 despesaPorCategoria.add(c);
@@ -170,6 +167,14 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
             this.despesas = new HashMap<>();
             this.receitas = new HashMap<>();
             System.err.println(e.getMessage());
+        }
+    }
+    @Override
+    public Despesa pesquisarDespesaPeloId(String id)throws DespesaNaoExisteException{
+        if (!this.despesas.containsKey(id)){
+            throw new DespesaNaoExisteException("Não existe despesa com ID passado");
+        }else {
+            return this.despesas.get(id);
         }
     }
 

@@ -25,6 +25,7 @@ public class DespesaEditController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
+            String nome = JOptionPane.showInputDialog(janelaPrincipal,"Digite o novo nome da despesa");
             String id = JOptionPane.showInputDialog(janelaPrincipal, "Digite o ID da Despesa à ser editada: ");
             CategoriaDespesa categoria = (CategoriaDespesa) JOptionPane.showInputDialog(janelaPrincipal, "Selecione a nova categoria:", "Categoria", JOptionPane.QUESTION_MESSAGE, null, CategoriaDespesa.values(), CategoriaDespesa.values()[0]);
             String valorStr = JOptionPane.showInputDialog(janelaPrincipal, "Digite o novo valor da despesa: ");
@@ -33,7 +34,7 @@ public class DespesaEditController implements ActionListener {
             String dataStr = JOptionPane.showInputDialog(janelaPrincipal, "Informe a  nova data da Despesa: Modelo = yyyy-MM-dd ");
             LocalDate data = LocalDate.parse(dataStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            financas.editarDespesa(id, categoria, novoValor, descricao, data);
+            financas.editarDespesa(nome,id, categoria, novoValor, descricao, data);
             JOptionPane.showMessageDialog(janelaPrincipal, "Despesa editada com sucesso!");
         } catch (DespesaNaoExisteException ex) {
             JOptionPane.showMessageDialog(janelaPrincipal, ex.getMessage());
