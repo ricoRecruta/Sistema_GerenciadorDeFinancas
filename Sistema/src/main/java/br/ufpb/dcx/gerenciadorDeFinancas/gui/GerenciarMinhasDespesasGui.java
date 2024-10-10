@@ -66,7 +66,7 @@ public class GerenciarMinhasDespesasGui extends JFrame {
         //Botão 3: Remover
         JButton botaoRemoverDespesa = new JButton("Remover despesa", iconeRemover);
         botaoRemoverDespesa.setPreferredSize(new Dimension(200, 50));
-        //TODO: verificar a instancia do sistema e a lógica
+        //TODO: verificar a instancia do sistema e a lógicaa
         botaoRemoverDespesa.addActionListener(new DespesaRemoveController(this.sistema, this));
 
 
