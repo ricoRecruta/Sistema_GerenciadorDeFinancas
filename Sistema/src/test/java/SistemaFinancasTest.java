@@ -16,8 +16,8 @@ public class SistemaFinancasTest {
     public void testRemoverDespesa() throws DespesaNaoExisteException {
         SistemaFinancas sistema = new SistemaFinancas();
 
-        Despesa despesa1 = new Despesa("1", CategoriaDespesa.ALIMENTACAO, 100.0, "Feira de alimentos",LocalDate.now());
-        Despesa despesa2 = new Despesa("17823ghyfc", CategoriaDespesa.LAZER, 2900.0,"Console Video Game", LocalDate.now() );
+        Despesa despesa1 = new Despesa("", "1", CategoriaDespesa.ALIMENTACAO, 100.0, "Feira de alimentos",LocalDate.now());
+        Despesa despesa2 = new Despesa("", "17823ghyfc", CategoriaDespesa.LAZER, 2900.0,"Console Video Game", LocalDate.now() );
 
         try {
             sistema.cadastrarDespesa(despesa1);
@@ -42,8 +42,8 @@ public class SistemaFinancasTest {
         SistemaFinancas sistema = new SistemaFinancas();
 
         //Teste método exibirTotalGasto
-        Despesa compraTeste = new Despesa("321", CategoriaDespesa.ALIMENTACAO, 53, "bananas",LocalDate.now());
-        Despesa compraTeste2 = new Despesa("654", CategoriaDespesa.ALIMENTACAO, 53, "bananas", LocalDate.now());
+        Despesa compraTeste = new Despesa("despesa1","321", CategoriaDespesa.ALIMENTACAO, 53, "bananas",LocalDate.now());
+        Despesa compraTeste2 = new Despesa("despesa2", "654", CategoriaDespesa.ALIMENTACAO, 53, "bananas", LocalDate.now());
         try {
             sistema.cadastrarDespesa(compraTeste);
             sistema.cadastrarDespesa(compraTeste2);
@@ -77,8 +77,8 @@ public class SistemaFinancasTest {
         SistemaFinancas sistema = new SistemaFinancas();
         Receita receitaMaio = new Receita("123mesDeFernando", 1000.0, LocalDate.of(2024, 5, 13));
         Receita receitaJunho = new Receita("671829", 600.0, LocalDate.of(2024, 6, 20));
-        Despesa despesaMaio = new Despesa("mesDeFernando546", CategoriaDespesa.GASTOS_PESSOAIS, 1100.0, "Festa de Anivérsario", LocalDate.of(2024, 5, 13));
-        Despesa despesaJunho = new Despesa("87372", CategoriaDespesa.SAUDE, 50.0, "Mensalidade da Academia", LocalDate.of(2024, 6, 20));
+        Despesa despesaMaio = new Despesa("despesa1","13546", CategoriaDespesa.GASTOS_PESSOAIS, 1100.0, "Festa de Anivérsario", LocalDate.of(2024, 5, 13));
+        Despesa despesaJunho = new Despesa("despesa2", "87372", CategoriaDespesa.SAUDE, 50.0, "Mensalidade da Academia", LocalDate.of(2024, 6, 20));
 
         LocalDate data = LocalDate.of(2024, 5, 13);
         LocalDate data2 = LocalDate.of(2024, 5, 13);
@@ -101,16 +101,16 @@ public class SistemaFinancasTest {
 
 
 
-    /*@Test
+    @Test
     public void testCadatroDespesa(){
         SistemaGerenciadorFinancas sistema = new SistemaFinancas();
         try {
-            sistema.cadastrarDespesa(new Despesa("321", CategoriaDespesa.OUTROS, 10.50, "nana", LocalDate.of(2024,10,3)));
-            sistema.cadastrarDespesa(new Despesa("321", CategoriaDespesa.OUTROS, 10.50, "nana", LocalDate.of(2024,10,3)));
+            sistema.cadastrarDespesa(new Despesa("despesa1","321", CategoriaDespesa.OUTROS, 10.50, "nana", LocalDate.of(2024,10,3)));
+            sistema.cadastrarDespesa(new Despesa("despesa2","321", CategoriaDespesa.OUTROS, 10.50, "nana", LocalDate.of(2024,10,3)));
             fail("não é pra deixar cadastrar");
         }catch (DespesaJaCadastradaException e){
             //
         }
-    }*/
+    }
 
 }
