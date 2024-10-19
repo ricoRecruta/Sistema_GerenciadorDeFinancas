@@ -17,13 +17,14 @@ public class ExibeRelatorioGUI extends JFrame {
     ImageIcon iconeGastos = new ImageIcon("./Sistema/src/imgs/gastosicon.png");
     ImageIcon iconeMensal = new ImageIcon("./Sistema/src/imgs/gastomensalicon.png");
     ImageIcon iconeReceita = new ImageIcon("./Sistema/src/imgs/receitaicon.png");
-    private static SistemaGerenciadorFinancas sistema;
+
+    private SistemaGerenciadorFinancas sistema;
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private JTextField dataField;
 
-    public ExibeRelatorioGUI() {
-        sistema = new SistemaFinancas();
-        sistema.recuperarDados();
+    public ExibeRelatorioGUI(SistemaGerenciadorFinancas sistemaZ) {
+        sistema = sistemaZ;
+        //sistema.recuperarDados();
 
         //Redimensionando os icones
         iconeGastos = new ImageIcon(iconeGastos.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
@@ -54,7 +55,7 @@ public class ExibeRelatorioGUI extends JFrame {
             String data = JOptionPane.showInputDialog(this, "Data a ser pesquisada? (dd/MM/yyyy)");
             LocalDate dataCliente = LocalDate.parse(data, dateFormatter);
             double totalGastos = sistema.exibirTotalGastoDoMes(dataCliente);
-            JOptionPane.showMessageDialog(this, "Total de gastos no mês: " + totalGastos);
+            JOptionPane.showMessageDialog(this, "Total de gastos no mês: " + totalGastos+"R$;");
         });
 
         // BTN2: EXIBIR SALDO POSITIVO/NEGATIVO MENSAL
@@ -96,19 +97,21 @@ public class ExibeRelatorioGUI extends JFrame {
         itemPaginaInicial.addActionListener(new PaginaInicialController(this));
 
         itemDespesas.addActionListener( e -> {
-            GerenciarMinhasDespesasGui paginaDespesa = new GerenciarMinhasDespesasGui();
+            GerenciarMinhasDespesasGui paginaDespesa = new GerenciarMinhasDespesasGui(this.sistema);
             dispose();
             paginaDespesa.setVisible(true);
         });
        itemReceitas.addActionListener(e -> {
-           JFrame janela = new GerenciarMinhasReceitasGUI();
+           JFrame janela = new GerenciarMinhasReceitasGUI(this.sistema);
            dispose();
            janela.setVisible(true);
        });
     }
 
     public static void main(String[] args) {
-        JFrame janela = new ExibeRelatorioGUI();
+        SistemaGerenciadorFinancas sistema = new SistemaFinancas();
+        sistema.recuperarDados();
+        JFrame janela = new ExibeRelatorioGUI(sistema);
         janela.setVisible(true);
         WindowListener fechadorDeJanelaPrincipal = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {

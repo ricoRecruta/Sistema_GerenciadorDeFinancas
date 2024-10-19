@@ -24,6 +24,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     @Override
     public void cadastrarReceita(Receita receita) {
         this.receitas.put(receita.getIdReceita(), receita);
+        salvarDados();
     }
 
     @Override
@@ -31,6 +32,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
         if (this.receitas.containsKey(idReceita)) {
             Receita receita = this.receitas.get(idReceita);
             receita.setValor(novaReceita);
+            salvarDados();
         } else {
             throw new ReceitaNaoExisteException("Receita com ID: " + idReceita + " não existente!");
         }
@@ -39,6 +41,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
     public void removerReceita(Receita receita) throws ReceitaNaoExisteException{
         if(this.receitas.containsKey(receita.getIdReceita())){
             this.receitas.remove(receita.getIdReceita());
+            salvarDados();
         }else{
             throw new ReceitaNaoExisteException("Essa receita não existe ou não está cadastrada no sistema");
         }
@@ -60,6 +63,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
             throw new DespesaJaCadastradaException("Compra com o ID " + despesa.getIdDespesa() + ", e Data " + despesa.getData() + " já cadastrada no sistema!");
         }
         this.despesas.put(despesa.getIdDespesa(), despesa);
+        salvarDados();
     }
 
     @Override
@@ -71,6 +75,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
             compraExistente.setValorDespesa(novoValor);
             compraExistente.setDescricao(novaDescricao);
             compraExistente.setData(data);
+            salvarDados();
         } else {
             throw new DespesaNaoExisteException("Compra com o ID " + idDespesa + " não encontrada no sistema.");
         }
@@ -83,7 +88,7 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
             throw new DespesaNaoExisteException("A despesa com id: " + id + " não existe");
         }
         despesas.remove(id);
-
+        salvarDados();
     }
 
     @Override

@@ -18,11 +18,11 @@ import java.io.IOException;
 public class SmartFinanceGUI extends JFrame {
     JLabel linha1, linha2;
     ImageIcon capaSmartFinance;
-    private  static SistemaGerenciadorFinancas sistema;
+    private SistemaGerenciadorFinancas sistema;
 
 
     public SmartFinanceGUI() {
-        sistema = new SistemaFinancas();
+        this.sistema = new SistemaFinancas();
         sistema.recuperarDados();
 
 
@@ -61,19 +61,19 @@ public class SmartFinanceGUI extends JFrame {
         JButton btnRelatorios = new JButton("Exibir relatórios");
 
         btnDespesas.addActionListener(e -> {
-             GerenciarMinhasDespesasGui despesasGUI = new GerenciarMinhasDespesasGui();
+             GerenciarMinhasDespesasGui despesasGUI = new GerenciarMinhasDespesasGui(sistema);
              dispose();
             despesasGUI.setVisible(true);
         });
 
         btnReceita.addActionListener(e -> {
-             GerenciarMinhasReceitasGUI receitasGUI = new GerenciarMinhasReceitasGUI();
+             GerenciarMinhasReceitasGUI receitasGUI = new GerenciarMinhasReceitasGUI(sistema);
              dispose();
              receitasGUI.setVisible(true);
         });
 
         btnRelatorios.addActionListener(e -> {
-            ExibeRelatorioGUI relatoriosGUI = new ExibeRelatorioGUI();
+            ExibeRelatorioGUI relatoriosGUI = new ExibeRelatorioGUI(sistema);
             dispose();
             relatoriosGUI.setVisible(true);
         });
@@ -147,13 +147,17 @@ public class SmartFinanceGUI extends JFrame {
         getContentPane().add(painelCentral, BorderLayout.CENTER);*/
 
     }
+    public SistemaGerenciadorFinancas getSistema(){
+        return sistema;
+    }
 
     public static void main(String[] args) {
-        JFrame janela = new SmartFinanceGUI();
+        SmartFinanceGUI janela = new SmartFinanceGUI();
         janela.setVisible(true);
+        SistemaGerenciadorFinancas sistema = janela.getSistema();
         WindowListener fechadorDeJanelaPrincipal = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-               sistema.salvarDados();
+                sistema.salvarDados();
                 System.exit(0);
             }
         };

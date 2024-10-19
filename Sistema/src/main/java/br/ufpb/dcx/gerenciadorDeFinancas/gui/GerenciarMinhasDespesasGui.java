@@ -18,11 +18,11 @@ public class GerenciarMinhasDespesasGui extends JFrame {
     ImageIcon iconeRemover = new ImageIcon("./Sistema/src/imgs/remover.png");
 
     // TODO: mudar depois isso
-    private static SistemaGerenciadorFinancas sistema;
+    private SistemaGerenciadorFinancas sistema;
 
-    public GerenciarMinhasDespesasGui() {
-        sistema = new SistemaFinancas();
-        sistema.recuperarDados();
+    public GerenciarMinhasDespesasGui(SistemaGerenciadorFinancas sistemaZ) {
+        sistema = sistemaZ;
+        //sistema.recuperarDados();
 
         //redimensionando o tamanho dos icones
         iconeCadastrar = new ImageIcon(iconeCadastrar.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
@@ -105,14 +105,14 @@ public class GerenciarMinhasDespesasGui extends JFrame {
 
         //Lógica para ir para MinhasReceitasGUI
         itemReceita.addActionListener(e -> {
-            JFrame janela = new GerenciarMinhasReceitasGUI();
+            JFrame janela = new GerenciarMinhasReceitasGUI(this.sistema);
             dispose();
             janela.setVisible(true);
         });
 
         //Lõgica para ExibirRelatorioGUI
         itemExibirRelatorio.addActionListener(e ->{
-            ExibeRelatorioGUI paginaRelatorio = new ExibeRelatorioGUI();
+            ExibeRelatorioGUI paginaRelatorio = new ExibeRelatorioGUI(this.sistema);
             dispose();
             paginaRelatorio.setVisible(true);
         });
@@ -120,7 +120,9 @@ public class GerenciarMinhasDespesasGui extends JFrame {
     }
 
     public static void main(String[] args) {
-        JFrame janela = new GerenciarMinhasDespesasGui();
+        SistemaGerenciadorFinancas sistema = new SistemaFinancas();
+        sistema.recuperarDados();
+        JFrame janela = new GerenciarMinhasDespesasGui(sistema);
         janela.setVisible(true);
         WindowListener fechadorDeJanelaPrincipal = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {

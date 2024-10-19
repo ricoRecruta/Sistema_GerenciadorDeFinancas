@@ -20,11 +20,11 @@ public class GerenciarMinhasReceitasGUI extends JFrame {
 
 
     //TODO: mudar depois esse método estático
-    private static SistemaGerenciadorFinancas sistema;
+    private SistemaGerenciadorFinancas sistema;
 
-    public GerenciarMinhasReceitasGUI(){
-        sistema = new SistemaFinancas();
-        sistema.recuperarDados();
+    public GerenciarMinhasReceitasGUI(SistemaGerenciadorFinancas sistemaZ) {
+        this.sistema = sistemaZ;
+        //sistema.recuperarDados();
 
         //redimensionando o tamanho dos icones
         iconeCadastrtar = new ImageIcon(iconeCadastrtar.getImage().getScaledInstance(30,30, Image.SCALE_SMOOTH));
@@ -110,7 +110,7 @@ public class GerenciarMinhasReceitasGUI extends JFrame {
         itemDespesas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame janela = new GerenciarMinhasDespesasGui();
+                JFrame janela = new GerenciarMinhasDespesasGui(sistema);
                 dispose();
                 janela.setVisible(true);
             }
@@ -118,7 +118,7 @@ public class GerenciarMinhasReceitasGUI extends JFrame {
 
         //lógica para ir para a página de exibirRelatório
         itemExibirReceita.addActionListener(e -> {
-            JFrame janela = new ExibeRelatorioGUI();
+            JFrame janela = new ExibeRelatorioGUI(this.sistema);
             dispose();
             janela.setVisible(true);
         });
@@ -126,7 +126,9 @@ public class GerenciarMinhasReceitasGUI extends JFrame {
     }
 
     public static void main(String[] args){
-        JFrame janelaPrincipal = new GerenciarMinhasReceitasGUI();
+        SistemaGerenciadorFinancas sistema = new SistemaFinancas();
+        sistema.recuperarDados();
+        JFrame janelaPrincipal = new GerenciarMinhasReceitasGUI(sistema);
         janelaPrincipal.setVisible(true);
         WindowListener fechadorDeJanelaPrincipal = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
