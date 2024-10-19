@@ -16,6 +16,7 @@ public class DespesaAddController implements ActionListener {
 
     private SistemaGerenciadorFinancas financas;
     private JFrame janelaPrincipal;
+    private DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public DespesaAddController(SistemaGerenciadorFinancas financas, JFrame janela){
         this.financas = financas;
@@ -31,9 +32,8 @@ public class DespesaAddController implements ActionListener {
         String valorStr = JOptionPane.showInputDialog(janelaPrincipal,"Digite o valor da despesa: ");
         Double valor = Double.parseDouble(valorStr);
         String descricao = JOptionPane.showInputDialog(janelaPrincipal, "Digite a Descrição da Despesa:");
-        String dataStr = JOptionPane.showInputDialog(janelaPrincipal, "Informe a data da Despesa: Modelo = yyyy-MM-dd ");
-        LocalDate data = LocalDate.parse(dataStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+        String dataStr = JOptionPane.showInputDialog(janelaPrincipal, "Informe a data da Despesa: Modelo = dd/MM/yyyy ");
+        LocalDate data = LocalDate.parse(dataStr, dataFormatter);
         Despesa novaDespesa = new Despesa(nome,id, categoria, valor, descricao, data);
         try {
             financas.cadastrarDespesa(novaDespesa);

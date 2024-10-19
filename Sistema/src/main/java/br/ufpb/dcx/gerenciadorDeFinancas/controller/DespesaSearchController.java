@@ -29,7 +29,7 @@ public class DespesaSearchController implements ActionListener {
             JOptionPane.showMessageDialog(janelaPrincipal, "Nenhuma despesa foi encontrada para a categoria: " + categoria);
         }else {
             for(Despesa de: despesasEncontradas){
-                despesaFinal.append(de.getDescricao()+" "+de.getValorDespesa()+" "+"\n");
+                despesaFinal.append(de.toString()+"\n");
             }
             JOptionPane.showMessageDialog(janelaPrincipal,"Despesa(s) encontrada(s) com sucesso!");
             JOptionPane.showMessageDialog(janelaPrincipal, despesaFinal.toString());

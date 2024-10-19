@@ -43,14 +43,13 @@ public class DespesaEditController implements ActionListener {
                     financas.editarDespesa(despesaEditar.getNome(), despesaEditar.getIdDespesa(),despesaEditar.getCategoriaDespesa(), novoValor, despesaEditar.getDescricao(),despesaEditar.getData());
                     break;
                 case "4":
-                    String descricao = JOptionPane.showInputDialog(janelaPrincipal,"Digite a nova nome descrição");
-                    financas.editarDespesa(despesaEditar.getNome(), descricao, despesaEditar.getCategoriaDespesa(), despesaEditar.getValorDespesa() ,descricao, despesaEditar.getData());
+                    String descricao = JOptionPane.showInputDialog(janelaPrincipal,"Digite a nova descrição");
+                    financas.editarDespesa(despesaEditar.getNome(), despesaEditar.getIdDespesa(), despesaEditar.getCategoriaDespesa(), despesaEditar.getValorDespesa() ,descricao, despesaEditar.getData());
                     break;
                 case "5":
 
                     String dataStr = JOptionPane.showInputDialog(janelaPrincipal, "Informe a  nova data da Despesa: Modelo = dd/MM/yyyy");
                     LocalDate novaData = LocalDate.parse(dataStr, dataFormatter);
-                    //LocalDate data = LocalDate.parse(dataStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     financas.editarDespesa(despesaEditar.getNome(), despesaEditar.getIdDespesa(), despesaEditar.getCategoriaDespesa(),despesaEditar.getValorDespesa(), despesaEditar.getDescricao(), novaData);
                     break;
             }

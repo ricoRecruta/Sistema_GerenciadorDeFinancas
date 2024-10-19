@@ -104,11 +104,11 @@ public class Despesa implements Serializable{
     }
 
     public String toString(){
-        return "[Despesa: "+this.categoriaDespesa +
+        return "Despesa: "+this.categoriaDespesa +
                 "\nNome: "+this.nome+
                 "\nValor: "+this.valorDespesa +
                 "\nDescrição: "+this.descricao+
                 "\nData: "+this.data+
-                "\nID: "+this.idDespesa +"]";
+                "\nID: "+this.idDespesa +"\n";
     }
 }
