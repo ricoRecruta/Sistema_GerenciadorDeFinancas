@@ -4,9 +4,13 @@ import br.ufpb.dcx.gerenciadorDeFinancas.controller.*;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaFinancas;
 import br.ufpb.dcx.gerenciadorDeFinancas.sistema.SistemaGerenciadorFinancas;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -17,7 +21,7 @@ public class GerenciarMinhasReceitasGUI extends JFrame {
     ImageIcon iconeEditar = new ImageIcon("./Sistema/src/imgs/editar.png");
     ImageIcon iconeRemover = new ImageIcon("./Sistema/src/imgs/remover.png");
     ImageIcon iconeExiberReceita = new ImageIcon("./Sistema/src/imgs/gastomensalicon.png");
-
+    ImageIcon capaReceitas = new ImageIcon("./Sistema/src/imgs/capagerenciadereceitas.png");
 
     //TODO: mudar depois esse método estático
     private SistemaGerenciadorFinancas sistema;
@@ -40,11 +44,13 @@ public class GerenciarMinhasReceitasGUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
 
+
         linha1 = new JLabel("GESTÃO DE FINANÇAS", JLabel.CENTER);
         linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
         getContentPane().add(linha1, BorderLayout.NORTH);
 
         //TODO: falta adcionar a imagem
+
 
         //Botões
          JPanel painelDeBotoes = new JPanel();
