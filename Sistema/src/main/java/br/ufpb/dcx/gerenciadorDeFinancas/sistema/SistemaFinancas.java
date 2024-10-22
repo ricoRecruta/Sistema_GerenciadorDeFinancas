@@ -112,14 +112,6 @@ public class SistemaFinancas implements SistemaGerenciadorFinancas {
 
 
     //MÉTODOS DE EXIBIÇÃO
-    /*@Override
-    public double exibirTotalGasto() {
-        double valorTotal = 0;
-        for (Compra k: this.compras.values()){
-            valorTotal = k.getValorCompra() + valorTotal;
-        }
-        return valorTotal;
-    }*/
 
     @Override
     public double exibirTotalGasto() {
