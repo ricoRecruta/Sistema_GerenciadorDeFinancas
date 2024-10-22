@@ -23,12 +23,10 @@ public class GerenciarMinhasReceitasGUI extends JFrame {
     ImageIcon iconeExiberReceita = new ImageIcon("./Sistema/src/imgs/gastomensalicon.png");
     ImageIcon capaReceitas = new ImageIcon("./Sistema/src/imgs/capagerenciadereceitas.png");
 
-    //TODO: mudar depois esse método estático
     private SistemaGerenciadorFinancas sistema;
 
-    public GerenciarMinhasReceitasGUI(SistemaGerenciadorFinancas sistemaZ) {
-        this.sistema = sistemaZ;
-        //sistema.recuperarDados();
+    public GerenciarMinhasReceitasGUI(SistemaGerenciadorFinancas sistema) {
+        this.sistema = sistema;
 
         //redimensionando o tamanho dos icones
         iconeCadastrtar = new ImageIcon(iconeCadastrtar.getImage().getScaledInstance(30,30, Image.SCALE_SMOOTH));
@@ -48,8 +46,6 @@ public class GerenciarMinhasReceitasGUI extends JFrame {
         linha1 = new JLabel("GESTÃO DE FINANÇAS", JLabel.CENTER);
         linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
         getContentPane().add(linha1, BorderLayout.NORTH);
-
-        //TODO: falta adcionar a imagem
 
 
         //Botões

@@ -17,12 +17,12 @@ public class GerenciarMinhasDespesasGui extends JFrame {
     ImageIcon iconeEditar = new ImageIcon("./Sistema/src/imgs/editar.png");
     ImageIcon iconeRemover = new ImageIcon("./Sistema/src/imgs/remover.png");
 
-    // TODO: mudar depois isso
+
     private SistemaGerenciadorFinancas sistema;
 
-    public GerenciarMinhasDespesasGui(SistemaGerenciadorFinancas sistemaZ) {
-        sistema = sistemaZ;
-        //sistema.recuperarDados();
+    public GerenciarMinhasDespesasGui(SistemaGerenciadorFinancas sistema) {
+        this.sistema = sistema;
+
 
         //redimensionando o tamanho dos icones
         iconeCadastrar = new ImageIcon(iconeCadastrar.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
@@ -41,7 +41,6 @@ public class GerenciarMinhasDespesasGui extends JFrame {
         linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
         getContentPane().add(linha1, BorderLayout.NORTH);
 
-        //TODO: Falta adcionar a imagem
 
         //Botões
         JPanel painelDeBotoes = new JPanel();

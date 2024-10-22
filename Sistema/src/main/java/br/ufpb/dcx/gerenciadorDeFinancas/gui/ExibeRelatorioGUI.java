@@ -22,9 +22,8 @@ public class ExibeRelatorioGUI extends JFrame {
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private JTextField dataField;
 
-    public ExibeRelatorioGUI(SistemaGerenciadorFinancas sistemaZ) {
-        sistema = sistemaZ;
-        //sistema.recuperarDados();
+    public ExibeRelatorioGUI(SistemaGerenciadorFinancas sistema) {
+        this.sistema = sistema;
 
         //Redimensionando os icones
         iconeGastos = new ImageIcon(iconeGastos.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
@@ -42,7 +41,7 @@ public class ExibeRelatorioGUI extends JFrame {
         linha1.setFont(new Font("Agency FB", Font.BOLD, 30));
         getContentPane().add(linha1, BorderLayout.NORTH);
 
-        //TODO Imagem na linha 2
+
 
         //Botões
         JPanel painelBotoes = new JPanel();
