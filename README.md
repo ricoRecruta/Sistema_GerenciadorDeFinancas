@@ -44,4 +44,4 @@ Este projeto é um sistema de gerenciamento de finanças desenvolvido em Java, q
 
 ## Considerações Finais
 
-Este projeto foi desenvolvido em equipe como parte da avaliação na disciplina de Programação Orientada a Objetos do curso de Ciência da Computação. O objetivo é proporcionar uma compreensão prática sobre a manipulação de dados e o gerenciamento de finanças pessoais...
+Este projeto foi desenvolvido em equipe como parte da avaliação na disciplina de Programação Orientada a Objetos do curso de Ciência da Computação. O objetivo é proporcionar uma compreensão prática sobre a manipulação de dados e o gerenciamento de finanças pessoais.
